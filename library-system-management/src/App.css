@@ -1,0 +1,49 @@
+.loginForm{
+    width: 100%;
+    margin: auto;
+    padding-top: 150px;
+}
+
+.loginTitle{
+    font-weight: 700;
+    font-size: 24px;
+    color: #09174A;
+}
+
+.welcomeText{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+}
+
+.admin-student-selection{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+    border-style: none;
+    background-color: #fff;
+}
+
+.mail-password-title{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+}
+
+.loginButton{
+    font-size: 16px;
+    text-align: center;   
+    color: #FFFFFF;
+    border: none !important;
+    background: #ED7966 !important;
+}
+
+.admin-student-container{
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.LMSlogo{
+    font-weight: 800;
+    font-size: 24px;
+    color: #ED7966;
+}
