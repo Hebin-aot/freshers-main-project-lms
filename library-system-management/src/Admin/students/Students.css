@@ -1,0 +1,57 @@
+.add-student-button{
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #ED7966;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.student-title{
+    font-weight: 600;
+    font-size: 20px;
+    color: #09174A;
+    border-bottom:1px solid #E3E3E3 ;
+}
+
+.student-container{
+    background-color: #F5F5F5;
+}
+
+.student-name-title{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+}
+
+.student-email-title{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+}
+
+.student-action-title{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+    text-align: center;
+}
+
+.name-email-action-container{
+    background-color: #ffff;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.student-data-container{
+    background-color: #ffff;
+}
+
+.action-buttons{
+    border-style: none;
+    background-color: #fff;
+}
+
+.student-datas{
+    border-bottom: 1px solid #E3E3E3;
+}

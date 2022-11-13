@@ -2,6 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import './App.css';
+import AdminNavbar from './Admin/AdminNavbar';
+import Students from './Admin/students/Students';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 
@@ -31,9 +34,11 @@ function App() {
     <div className="App">
       {
         (user.email !== "") ? (
-          <div className="welcome">
-            <h1>welcome <span>{user.email}</span></h1>
+          <div className='d-flex'>
+              <AdminNavbar/>
+              <Students/>
           </div>
+            
         ) : (
           <LoginForm Login={Login}/>
         )

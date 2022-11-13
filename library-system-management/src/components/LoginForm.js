@@ -30,8 +30,8 @@ function LoginForm({ Login }) {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="col-md-12 mb-2 d-flex gap-5 admin-student-container" controlId="formBasicEmail">
-                        <button className="admin-student-selection">Admin</button>
-                        <button className="admin-student-selection">Student</button> 
+                        <button type="button" className="admin-student-selection">Admin</button>
+                        <button type="button" className="admin-student-selection">Student</button> 
                     </Form.Group>
                     <Form.Group className="col-md-12 mb-3" controlId="formBasicEmail">
                         <Form.Label className="mail-password-title">Email</Form.Label>
