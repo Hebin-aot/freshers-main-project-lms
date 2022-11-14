@@ -1,0 +1,44 @@
+.book-title{
+    font-weight: 600;
+    font-size: 20px;
+    color: #09174A;
+    border-bottom:1px solid #E3E3E3 ;
+}
+
+.book-container{
+    background-color: #F5F5F5;
+}
+
+.book-data-titles{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+}
+
+.add-new-book-button{
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #ED7966;
+    border-radius: 5px;
+    border-style: none;
+    width: 100%;
+}
+
+.book-datas{
+    background-color: #fff;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.book-datas p{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+    
+}
+
+.all-books-edit-delete-btn{
+    border-style: none;
+    background-color: #fff;
+}

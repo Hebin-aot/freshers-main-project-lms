@@ -3,10 +3,12 @@ import './Students.css'
 import StudentSearch from './components/StudentSearch';
 import AddStudents from './components/AddStudents';
 import StudentDetails from './components/StudentDetails';
+import AdminNavbar from '../AdminNavbar';
 
 function Students() {
   return (
-
+    <div className='d-flex'>
+        <AdminNavbar/>
         <div className='student-container col-md-10 p-5'>
             <form action="">
                 <div className='student-title p-3'>
@@ -18,15 +20,25 @@ function Students() {
                 </div>
             </form>
 
-            <div className='col-md-12 student-data-container px-5'>
+            <div className='col-md-12 student-data-container px-5 '>
                 <div className='d-flex py-4 name-email-action-container'>
                     <p className='col-5 student-name-title m-0 px-4'>Name</p>
                     <p className='col-3 student-email-title m-0'>Email</p>
                     <p className='col-4 student-action-title m-0'>Action</p>
                 </div>
                 <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
+                <StudentDetails/>
             </div>
         </div>
+    </div>
+        
   )
 }
 

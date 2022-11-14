@@ -2,9 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import './App.css';
-import AdminNavbar from './Admin/AdminNavbar';
 import Students from './Admin/students/Students';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AllBooks from './Admin/AllBooks/AllBooks';
+import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
   //useState for setting user
   const [user, setUser] = useState({email:"",password:""});
 
+
+
+
   const Login = (details) => {
     console.log(details)
     if (details.email === adminUser.email && details.password === adminUser.password){
@@ -24,25 +28,31 @@ function App() {
         email:details.email,
       })
     }else{
-      alert("details doesn't match")
+      alert("err")
     }
   }
 
 
-
   return (
     <div className="App">
-      {
-        (user.email !== "") ? (
-          <div className='d-flex'>
-              <AdminNavbar/>
-              <Students/>
-          </div>
-            
-        ) : (
-          <LoginForm Login={Login}/>
-        )
-      }
+      <Router>
+        <Routes>
+          <Route exact path='/students' element=
+            {
+
+              (user.email !== "") ? (
+
+                <Students/>
+
+                ) : ( 
+                  <LoginForm Login={Login}/>
+              )
+
+            }/>
+          <Route path='/allbooks' element={<AllBooks/>}/>
+          <Route path='/issuedbooks' element={<IssuedBooks/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }

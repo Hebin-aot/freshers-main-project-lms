@@ -55,3 +55,9 @@
 .student-datas{
     border-bottom: 1px solid #E3E3E3;
 }
+
+.student-datas p{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+}
