@@ -11,15 +11,15 @@ function AdminNavbar() {
             </div>
             <div className='admin-navigation-tab-container d-flex flex-column align-items-center gap-4'>
 
-                <Link to="/issuedbooks" className='student-nav-links col-md-10'>
+                <Link to="/issued-books" className='student-nav-links col-md-10'>
                   <button className='col-md-10 d-flex gap-3'> <img src="./images/issuedBook.png" alt="" /> Issued Books</button>
                 </Link>
                 
-                <Link to="/allbooks" className='student-nav-links col-md-10'>
+                <Link to="/all-books" className='student-nav-links col-md-10'>
                   <button className='col-md-10 d-flex gap-3'> <img src="./images/allBooks.png" alt="" /> All Books</button>
                 </Link>
                 
-                <Link to="/students" className='student-nav-links col-md-10'>
+                <Link to="/" className='student-nav-links col-md-10'>
                   <button className='d-flex gap-3 col-md-10'> <img src="./images/studentsLogo.png" alt="" /> Students</button>
                 </Link>     
 

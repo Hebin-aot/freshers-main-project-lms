@@ -3,6 +3,7 @@ import AdminNavbar from '../AdminNavbar';
 import SearchBook from './components/SearchBook';
 import AddNewBook from './components/AddNewBook';
 import BookDetails from './components/BookDetails';
+import Form from 'react-bootstrap/esm/Form';
 import './AllBooks.css'
 
 function AllBooks() {
@@ -15,8 +16,12 @@ function AllBooks() {
                     <label htmlFor="Books">All Books</label>
                 </div>
                 <div className="book-searchadd-container d-flex align-items-center justify-content-between py-5">
-                    <SearchBook/>
-                    <AddNewBook/>
+                <div className='col-md-6'>
+                    <Form.Control type="text" placeholder="Search by student name or email" />
+                </div>
+                    <div className='col-md-2 '>
+                        <button type='button' className='col-md-12 add-new-book-button py-2'>Add New Book</button>
+                    </div>
                 </div>
             </form>
 

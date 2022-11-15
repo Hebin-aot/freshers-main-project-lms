@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
+import { studentContext } from '../../../App';
+import shortid from "shortid"
 
-function AddStudentModal({show,setShow}) {
+function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
+
+    
+
+    const [studentData, setStudentData] = useState({id:"", name:"",email:"",password:"",role:"candidate"})
+
+
+    const handleSubmit = () => {
+        setStudentDatas([...studentDatas,studentData])
+        handleClose()
+        console.log(studentDatas)
+    }
+
     const handleClose = () => setShow(false);
   return (
     <>
@@ -17,8 +32,9 @@ function AddStudentModal({show,setShow}) {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="name@example.com"
-                autoFocus
+                placeholder="Eg: John Doe"
+                onChange={e=>setStudentData({...studentData,name:e.target.value,id:shortid.generate()})}
+                value={studentData.name}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -26,23 +42,25 @@ function AddStudentModal({show,setShow}) {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
-                autoFocus
+                onChange={e=>setStudentData({...studentData,email:e.target.value})}
+                value={studentData.email}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="name@example.com"
-                autoFocus
+                placeholder=""
+                onChange={e=>setStudentData({...studentData,password:e.target.value})}
+                value={studentData.password}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>ConfirmPassword</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="name@example.com"
-                autoFocus
+                placeholder=""
+                
               />
             </Form.Group>
           </Form>
@@ -51,7 +69,7 @@ function AddStudentModal({show,setShow}) {
           <Button variant="danger" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={handleSubmit}>
             Add Student
           </Button>
         </Modal.Footer>

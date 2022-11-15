@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from "react";
+import { createContext, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import './App.css';
 import Students from './Admin/students/Students';
@@ -7,8 +7,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllBooks from './Admin/AllBooks/AllBooks';
 import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
 
+const studentContext = createContext()
+
 function App() {
 
+  const [studentDatas, setStudentDatas] = useState([])
+  
   //temporary admin details
   const adminUser = {
     email:"admin@gmail.com",
@@ -35,9 +39,10 @@ function App() {
 
   return (
     <div className="App">
+      <studentContext.Provider value={[studentDatas, setStudentDatas]}>
       <Router>
         <Routes>
-          <Route exact path='/students' element=
+          <Route exact path='/' element=
             {
 
               (user.email !== "") ? (
@@ -49,12 +54,14 @@ function App() {
               )
 
             }/>
-          <Route path='/allbooks' element={<AllBooks/>}/>
-          <Route path='/issuedbooks' element={<IssuedBooks/>}/>
+          <Route path='/all-books' element={<AllBooks/>}/>
+          <Route path='/issued-books' element={<IssuedBooks/>}/>
         </Routes>
       </Router>
+      </studentContext.Provider>
     </div>
   );
 }
 
 export default App;
+export {studentContext}

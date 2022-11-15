@@ -41,9 +41,9 @@ function LoginForm({ Login }) {
                         <Form.Label className="mail-password-title">Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter your password" onChange={e => setDetails({...details,password: e.target.value})} value={details.password}/>
                     </Form.Group>
-                        <Button type="submit" className="col-md-12 loginButton py-2">
-                            Login
-                        </Button>
+                    <Button type="submit" className="col-md-12 loginButton py-2">
+                        Login
+                    </Button>
                 </Form>
             </div>
         </div>
