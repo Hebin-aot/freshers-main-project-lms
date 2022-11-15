@@ -26,13 +26,15 @@ function Students() {
     const [dltId, setdltId] = useState("")
 
     const handleStudentDelete= (dltid) => {
-        // setdltId(dltid)
-        
-        // handleDeleteMoadalShow()
-        
+
         setStudentDatas(studentDatas.filter((item)=> dltid != item.id ))
+        handleDeleteModalClose()
     }
 
+    const deleteId = (id) => {
+        setdltId(id)
+
+    }
     
 
   return (
@@ -70,7 +72,7 @@ function Students() {
                                 <p className='col-3'>{item.email}</p>
                                 <div className='col-4 d-flex gap-2 align-items-center justify-content-center'>
                                     <button className='action-buttons'><img src="./images/editIcon.png" alt="" /></button>
-                                    <button onClick={()=>handleStudentDelete(item.id)} className='action-buttons'><img src="./images/deleteIcon.png" alt="" /></button>
+                                    <button onClick={()=>{handleDeleteMoadalShow();deleteId(item.id)}} className='action-buttons'><img src="./images/deleteIcon.png" alt="" /></button>
                                     <button className='action-buttons'><img src="./images/eyeIcon.png" alt="" /></button>
                                 </div>
                             </div>
@@ -91,7 +93,7 @@ function Students() {
                 <Button variant="secondary" onClick={handleDeleteModalClose }>
                     Cancel
                 </Button>
-                <Button variant="danger" onClick={handleDeleteModalClose }>
+                <Button variant="danger" onClick={() => handleStudentDelete(dltId)}>
                     Delete
                 </Button>
             </Modal.Footer>
