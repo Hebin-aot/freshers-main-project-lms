@@ -49,7 +49,7 @@ function Students() {
                 </div>
                 <div className="student-searchadd-container d-flex align-items-center justify-content-between py-5">
                     <div className='col-md-6'>
-                        <Form.Control onChange={e => {setSearchStudent(e.target.value)}} type="text" placeholder="Search by student name or email"/>
+                        <Form.Control className='studentSearchIcon' onChange={e => {setSearchStudent(e.target.value)}} type="text" placeholder="Search by student name or email"/>
                     </div>
                     <div className='col-md-2 '>
                         <button type='button' onClick={handleShow} className='col-12 add-student-button px-3 py-2 text-nowrap'>Add New Student</button>
@@ -66,7 +66,7 @@ function Students() {
                 </div>
 
                 {
-                    studentDatas.filter((val) => {
+                    studentDatas?.filter((val) => {
                         if (StudentSearch ===""){
                             return val;
                         } else if (val.name.toLocaleLowerCase().includes(searchStudent.toLocaleLowerCase())){

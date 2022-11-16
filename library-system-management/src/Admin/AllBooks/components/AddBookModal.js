@@ -2,11 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/esm/Form';
 import { useState } from 'react';
+import shortid from "shortid"
 
 
 function AddBookModal({addBookModal,setAddBookModal,bookDatas,setBookDatas}) {
 
-    const [bookDetail, setBookDetail] = useState({bookName:"",author:"",language:"",totalCopies:"",remaining:""})
+    const [bookDetail, setBookDetail] = useState({id:"",bookName:"",author:"",language:"",totalCopies:"",remaining:""})
 
 
     const handleAddBookModalClose = () => setAddBookModal(false);
@@ -26,7 +27,7 @@ function AddBookModal({addBookModal,setAddBookModal,bookDatas,setBookDatas}) {
                   <Form>
                       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                           <Form.Label>Name</Form.Label>
-                          <Form.Control type="text" placeholder="" onChange={e=>setBookDetail({...bookDetail,bookName:e.target.value})} value={bookDetail.bookName} />
+                          <Form.Control type="text" placeholder="" onChange={e=>setBookDetail({...bookDetail,bookName:e.target.value,id:shortid.generate()})} value={bookDetail.bookName} />
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                           <Form.Label>Author</Form.Label>
