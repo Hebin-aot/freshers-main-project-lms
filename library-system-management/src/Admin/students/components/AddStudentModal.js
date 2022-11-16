@@ -1,9 +1,7 @@
-import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
-import { studentContext } from '../../../App';
 import shortid from "shortid"
 
 function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
@@ -17,6 +15,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
         setStudentDatas([...studentDatas,studentData])
         handleClose()
         console.log(studentDatas)
+        setStudentData({id:"", name:"",email:"",password:"",role:"candidate"})
     }
 
     const handleClose = () => setShow(false);

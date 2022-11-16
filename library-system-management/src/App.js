@@ -8,10 +8,13 @@ import AllBooks from './Admin/AllBooks/AllBooks';
 import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
 
 const studentContext = createContext()
+const bookContext = createContext()
 
 function App() {
 
   const [studentDatas, setStudentDatas] = useState([])
+
+  const [bookDatas, setBookDatas] = useState([])
   
   //temporary admin details
   const adminUser = {
@@ -40,24 +43,26 @@ function App() {
   return (
     <div className="App">
       <studentContext.Provider value={[studentDatas, setStudentDatas]}>
-      <Router>
-        <Routes>
-          <Route exact path='/' element=
-            {
+        <bookContext.Provider value={[bookDatas, setBookDatas]}>
+          <Router>
+            <Routes>
+              <Route exact path='/' element=
+                {
 
-              (user.email !== "") ? (
+                  (user.email !== "") ? (
 
-                <Students/>
+                    <Students/>
 
-                ) : ( 
-                  <LoginForm Login={Login}/>
-              )
+                    ) : ( 
+                      <LoginForm Login={Login}/>
+                  )
 
-            }/>
-          <Route path='/all-books' element={<AllBooks/>}/>
-          <Route path='/issued-books' element={<IssuedBooks/>}/>
-        </Routes>
-      </Router>
+                }/>
+              <Route path='/all-books' element={<AllBooks/>}/>
+              <Route path='/issued-books' element={<IssuedBooks/>}/>
+            </Routes>
+          </Router>
+        </bookContext.Provider>
       </studentContext.Provider>
     </div>
   );
@@ -65,3 +70,4 @@ function App() {
 
 export default App;
 export {studentContext}
+export {bookContext}

@@ -35,11 +35,15 @@ function LoginForm({ Login }) {
                     </Form.Group>
                     <Form.Group className="col-md-12 mb-3" controlId="formBasicEmail">
                         <Form.Label className="mail-password-title">Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter your email" onChange={e => setDetails({...details,email: e.target.value})} value={details.email}/>
+                        <Form.Control type="email" placeholder="Enter your email" 
+                        onChange={e => setDetails({...details,email: e.target.value})} 
+                        value={details.email}/>
                     </Form.Group>
                     <Form.Group className="col-md-12 mb-4" controlId="formBasicPassword">
                         <Form.Label className="mail-password-title">Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter your password" onChange={e => setDetails({...details,password: e.target.value})} value={details.password}/>
+                        <Form.Control type="password" placeholder="Enter your password" 
+                        onChange={e => setDetails({...details,password: e.target.value})} 
+                        value={details.password}/>
                     </Form.Group>
                     <Button type="submit" className="col-md-12 loginButton py-2">
                         Login
