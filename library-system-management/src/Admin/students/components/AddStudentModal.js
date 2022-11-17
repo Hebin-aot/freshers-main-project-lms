@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import shortid from "shortid"
 
-function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
+function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,setEditModal,selectedStudent,setSelectedStudent}) {
 
     
 
@@ -14,16 +14,20 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
     const handleSubmit = () => {
         setStudentDatas([...studentDatas,studentData])
         handleClose()
-        console.log(studentDatas)
         setStudentData({id:"", name:"",email:"",password:"",role:"candidate"})
     }
+
+    const handleEditSubmit = (selectedStudent) => {
+        console.log(selectedStudent.name)
+    }
+
 
     const handleClose = () => setShow(false);
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Student</Modal.Title>
+          <Modal.Title>{editModal? "Edit Student":"Add Student"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -33,16 +37,16 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
                 type="text"
                 placeholder="Eg: John Doe"
                 onChange={e=>setStudentData({...studentData,name:e.target.value,id:shortid.generate()})}
-                value={studentData.name}
+                value={editModal? selectedStudent.name : studentData.name}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="name@example.com"
                 onChange={e=>setStudentData({...studentData,email:e.target.value})}
-                value={studentData.email}
+                value={editModal? selectedStudent.email : studentData.email}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -51,7 +55,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
                 type="password"
                 placeholder=""
                 onChange={e=>setStudentData({...studentData,password:e.target.value})}
-                value={studentData.password}
+                value={editModal? selectedStudent.password : studentData.password}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -59,7 +63,6 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
               <Form.Control
                 type="password"
                 placeholder=""
-                
               />
             </Form.Group>
           </Form>
@@ -68,8 +71,8 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas}) {
           <Button variant="danger" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleSubmit}>
-            Add Student
+          <Button variant="danger" onClick={()=>{handleSubmit();handleEditSubmit(selectedStudent)}}>
+          {editModal? "Save" :"Submit" }
           </Button>
         </Modal.Footer>
       </Modal>

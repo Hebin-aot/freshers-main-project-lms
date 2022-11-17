@@ -4,7 +4,7 @@
 // function StudentSearch() {
 //   return (
 //     <div className='col-md-6'>
-//         <Form.Control onChange={e => {}} type="text" placeholder="Search by student name or email"/>
+//         <Form.Control type="text" placeholder="Search by student name or email"/>
 //     </div>
 //   )
 // }

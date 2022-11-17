@@ -6,6 +6,7 @@ import Students from './Admin/students/Students';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllBooks from './Admin/AllBooks/AllBooks';
 import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
+import StudentProfile from './Admin/students/StudentProfile';
 
 const studentContext = createContext()
 const bookContext = createContext()
@@ -60,6 +61,7 @@ function App() {
                 }/>
               <Route path='/all-books' element={<AllBooks/>}/>
               <Route path='/issued-books' element={<IssuedBooks/>}/>
+              <Route path='/student-profile' element={<StudentProfile/>}/>
             </Routes>
           </Router>
         </bookContext.Provider>
