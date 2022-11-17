@@ -44,11 +44,11 @@ function AddBookModal({addBookModal,setAddBookModal,bookDatas,setBookDatas}) {
                       </Form.Group>
 
                       <Form.Group className="mb-3 d-flex justify-content-between" controlId="exampleForm.ControlInput1">
-                          <Form.Group className="mb-3 col-6" controlId="exampleForm.ControlInput1">
+                          <Form.Group className="mb-3 mx-1 col-6" controlId="exampleForm.ControlInput1">
                               <Form.Label>Total Copies</Form.Label>
                               <Form.Control type="number"  onChange={e=>setBookDetail({...bookDetail,totalCopies:e.target.value})} value={bookDetail.totalCopies}/>
                           </Form.Group>
-                          <Form.Group className="mb-3 col-6" controlId="exampleForm.ControlInput1">
+                          <Form.Group className="mb-3 col-6 ms-1 " controlId="exampleForm.ControlInput1">
                               <Form.Label>Remaining</Form.Label>
                               <Form.Control type="number"  onChange={e=>setBookDetail({...bookDetail,remaining:e.target.value})} value={bookDetail.remaining}/>
                           </Form.Group>
@@ -59,7 +59,7 @@ function AddBookModal({addBookModal,setAddBookModal,bookDatas,setBookDatas}) {
                   <Button variant="secondary" onClick={handleAddBookModalClose}>
                       Cancel
                   </Button>
-                  <Button variant="primary" onClick={handleAddBookModalSubmit}>
+                  <Button variant="danger" onClick={handleAddBookModalSubmit}>
                       Add Book
                   </Button>
               </Modal.Footer>

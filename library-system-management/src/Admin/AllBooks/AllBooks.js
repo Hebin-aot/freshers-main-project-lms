@@ -10,21 +10,21 @@ import Button from 'react-bootstrap/esm/Button';
 
 function AllBooks() {
 
+    //states for book modals
     const [addBookModal, setAddBookModal] = useState(false);
-
     const handleAddBookModalShow = () => setAddBookModal(true);
+    const [deleteBookModal, setDeleteBookModal] = useState(false);
+    const handleDeleteBookModalClose = () => setDeleteBookModal(false);
+    const handleDeleteBookModalShow = () => setDeleteBookModal(true);
 
     const [bookDatas, setBookDatas] = useContext(bookContext)
 
     const [searchBook, setSearchBook] = useState("")
 
-    const [deleteBookModal, setDeleteBookModal] = useState(false);
-
-    const handleDeleteBookModalClose = () => setDeleteBookModal(false);
-    const handleDeleteBookModalShow = () => setDeleteBookModal(true);
-
     const [bookDltId, setBookDltId] = useState("")
 
+
+    //book delete funtion
     const handleBookDelete = (dltid)=>{
         setBookDatas(bookDatas.filter((book)=> dltid !== book.id ))
         handleDeleteBookModalClose()
@@ -64,8 +64,8 @@ function AllBooks() {
                   </div>
               </form>
 
-              <div className="book-data-container px-2">
-                  <div className="d-flex py-4 px-4 name-email-action-container gap-2">
+              <div className="book-data-container px-5 col-12">
+                  <div className="bookTitles d-flex py-4 px-4 gap-2 ">
                       <p className="book-data-titles col-2 m-0 ">Book Title</p>
                       <p className="book-data-titles col-2 m-0">Author</p>
                       <p className="book-data-titles col-2 m-0">Language</p>
@@ -112,6 +112,7 @@ function AllBooks() {
               setBookDatas={setBookDatas}
           />
 
+          {/* delete pop up for book */}
           <Modal show={deleteBookModal} onHide={handleDeleteBookModalClose}>
               <Modal.Header closeButton>
                   <Modal.Title>Alert</Modal.Title>
@@ -126,7 +127,6 @@ function AllBooks() {
                   </Button>
               </Modal.Footer>
           </Modal>
-
 
       </div>
   );

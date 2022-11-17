@@ -20,7 +20,7 @@ function IssuedBooks() {
                 </div>
             </form>
 
-            <div className='book-data-container px-2'>
+            <div className='book-data-container px-5'>
                 <div className='d-flex py-4 px-4 name-email-action-container gap-2'>
                     <p className='issuedbook-data-titles col-2 m-0 '>Book Title</p>
                     <p className='issuedbook-data-titles col-2 m-0'>Student</p>

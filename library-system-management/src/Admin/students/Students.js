@@ -14,13 +14,9 @@ import { Link } from 'react-router-dom';
 
 function Students() {
 
+    //States for Modal
     const [editModal, setEditModal] = useState(false)
-
     const [deleteModal, setDeleteModal] = useState(false);
-
-    const [searchStudent, setSearchStudent] = useState("")
-
-    const [selectedStudent, setSelectedStudent] = useState([])
 
     const handleDeleteModalClose = () => setDeleteModal(false);
     const handleDeleteMoadalShow = () => setDeleteModal(true);
@@ -28,9 +24,19 @@ function Students() {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
+    //state for searching student
+    const [searchStudent, setSearchStudent] = useState("")
+
+    //state for selecting student for edit
+    const [selectedStudent, setSelectedStudent] = useState([])
+
+    //state containing all datas of student
     const [studentDatas, setStudentDatas] = useContext(studentContext)
+
+    //state for selecting id of student to delete
     const [dltId, setdltId] = useState("")
 
+    //student Delete Function
     const handleStudentDelete= (dltid) => {
         setStudentDatas(studentDatas.filter((item)=> dltid !== item.id ))
         handleDeleteModalClose()
@@ -40,11 +46,12 @@ function Students() {
         setdltId(id)
     }
     
-
+    //function for editing student
     const editStudent = (student) => {
         setSelectedStudent(student)
         console.log(selectedStudent)
     }
+
 
 
   return (
@@ -62,7 +69,9 @@ function Students() {
                     <div className='col-md-2 '>
                         <button type='button' onClick={()=>{handleShow();setEditModal()}} className='col-12 add-student-button px-3 py-2 text-nowrap'>Add New Student</button>
                         <AddStudentModal setShow={setShow} show={show} setStudentDatas={setStudentDatas} studentDatas={studentDatas} setEditModal={setEditModal} editModal={editModal}
-                        selectedStudent={selectedStudent} setSelectedStudent={setSelectedStudent}/>
+                        selectedStudent={selectedStudent} setSelectedStudent={setSelectedStudent}
+                        
+                        />
                     </div>
                 </div>
             </form>
@@ -83,6 +92,7 @@ function Students() {
                         }
                         return 0
                     }).map((item)=>{
+
                         return(
                             <div key={item.id} className='d-flex justify-content-between py-4 student-datas'>
                                 <p className='col-5 px-4'>{item.name}</p>
@@ -103,6 +113,7 @@ function Students() {
             </div>
         </div>
 
+        {/* delete pop up */}
         <Modal show={deleteModal} onHide={handleDeleteModalClose }>
             <Modal.Header closeButton>
                 <Modal.Title>Alert</Modal.Title>

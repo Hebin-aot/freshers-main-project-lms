@@ -42,3 +42,11 @@
     border-style: none;
     background-color: #fff;
 }
+
+.book-data-container{
+    background-color: #fff;
+}
+
+.bookTitles{
+    border-bottom:1px solid #E3E3E3 ;
+}

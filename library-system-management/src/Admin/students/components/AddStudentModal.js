@@ -1,14 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import {  useState } from 'react';
 import shortid from "shortid"
 
 function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,setEditModal,selectedStudent,setSelectedStudent}) {
 
     
-
     const [studentData, setStudentData] = useState({id:"", name:"",email:"",password:"",role:"candidate"})
+
+    const [editedStudentData, setEditedStudentData] = useState({name:"",email:"",password:""})
+
 
 
     const handleSubmit = () => {
@@ -17,8 +19,8 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
         setStudentData({id:"", name:"",email:"",password:"",role:"candidate"})
     }
 
-    const handleEditSubmit = (selectedStudent) => {
-        console.log(selectedStudent.name)
+    const handleEditSubmit = () => {
+        
     }
 
 
@@ -36,7 +38,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
               <Form.Control
                 type="text"
                 placeholder="Eg: John Doe"
-                onChange={e=>setStudentData({...studentData,name:e.target.value,id:shortid.generate()})}
+                onChange={editModal? e=>setEditedStudentData({...editedStudentData,name:e.target.value}):e=>setStudentData({...studentData,name:e.target.value,id:shortid.generate()})}
                 value={editModal? selectedStudent.name : studentData.name}
               />
             </Form.Group>
@@ -71,7 +73,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
           <Button variant="danger" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={()=>{handleSubmit();handleEditSubmit(selectedStudent)}}>
+          <Button variant="danger" onClick={editModal? handleEditSubmit:handleSubmit }>
           {editModal? "Save" :"Submit" }
           </Button>
         </Modal.Footer>
