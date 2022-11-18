@@ -16,8 +16,11 @@ function AllBooks() {
     const [deleteBookModal, setDeleteBookModal] = useState(false);
     const handleDeleteBookModalClose = () => setDeleteBookModal(false);
     const handleDeleteBookModalShow = () => setDeleteBookModal(true);
+    const [bookEditModal, setBookEditModal] = useState(false)
 
     const [bookDatas, setBookDatas] = useContext(bookContext)
+
+    const [selectedBook, setSelectedBook] = useState([])
 
     const [searchBook, setSearchBook] = useState("")
 
@@ -32,6 +35,15 @@ function AllBooks() {
 
     const bookDeleteId = (id) =>{
         setBookDltId(id)
+    }
+
+    const editBook = (editBook) => {
+        setSelectedBook(editBook)
+        console.log(selectedBook)
+    }
+
+    const handleAddBook = () => {
+        setSelectedBook(null)
     }
 
   return (
@@ -56,7 +68,7 @@ function AllBooks() {
                           <button
                               type="button"
                               className="col-md-12 add-new-book-button py-2"
-                              onClick={handleAddBookModalShow}
+                              onClick={()=>{handleAddBookModalShow();setBookEditModal();handleAddBook()}}
                           >
                               Add New Book
                           </button>
@@ -78,7 +90,7 @@ function AllBooks() {
                   {bookDatas?.filter((book) => {
                           if (searchBook === "") {
                               return book;
-                          } else if (book.bookName.toLocaleLowerCase().includes(searchBook.toLocaleLowerCase())) {
+                          } else if (book?.bookName.toLocaleLowerCase().includes(searchBook.toLocaleLowerCase())) {
                               return book;
                           }
                           return 0;
@@ -92,7 +104,7 @@ function AllBooks() {
                                   <p className="col-2 m-0 ps-4">{book.totalCopies}</p>
                                   <p className="col-2 m-0 ps-4">{book.remaining}</p>
                                   <div className="col-2 m-0 d-flex gap-2">
-                                      <button className="all-books-edit-delete-btn">
+                                      <button onClick={()=>{handleAddBookModalShow();editBook(book);setBookEditModal(true)}} className="all-books-edit-delete-btn">
                                           <img src="./images/editIcon.png" alt="" />
                                       </button>
                                       <button className="all-books-edit-delete-btn" onClick={()=>{handleDeleteBookModalShow();bookDeleteId(book.id)}}>
@@ -110,6 +122,10 @@ function AllBooks() {
               setAddBookModal={setAddBookModal}
               bookDatas={bookDatas}
               setBookDatas={setBookDatas}
+              bookEditModal={bookEditModal}
+              setBookEditModal={setBookEditModal}
+              selectedBook={selectedBook}
+              setSelectedBook={setSelectedBook}
           />
 
           {/* delete pop up for book */}

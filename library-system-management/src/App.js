@@ -8,11 +8,14 @@ import AllBooks from './Admin/AllBooks/AllBooks';
 import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
 import StudentProfile from './Admin/students/StudentProfile';
 
+
 const studentContext = createContext()
 const bookContext = createContext()
 
 function App() {
 
+  
+  
   const [studentDatas, setStudentDatas] = useState([])
 
   const [bookDatas, setBookDatas] = useState([])
@@ -36,7 +39,7 @@ function App() {
         email:details.email,
       })
     }else{
-      alert("err")
+
     }
   }
 

@@ -2,10 +2,14 @@ import React from "react";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginForm({ Login }) {
 
     const [details, setDetails] = useState({email:"",password:"",})
+
+    const notify = () => toast.error("details doesn't match");
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -45,10 +49,12 @@ function LoginForm({ Login }) {
                         onChange={e => setDetails({...details,password: e.target.value})} 
                         value={details.password}/>
                     </Form.Group>
-                    <Button type="submit" className="col-md-12 loginButton py-2">
+                    <Button type="submit" className="col-md-12 loginButton py-2" onClick={notify}>
                         Login
                     </Button>
+                    <ToastContainer position="top-center"/>
                 </Form>
+                
             </div>
         </div>
     );
