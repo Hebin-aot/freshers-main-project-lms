@@ -7,7 +7,7 @@ import shortid from "shortid"
 function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,setEditModal,selectedStudent,setSelectedStudent}) {
 
     
-   // const [studentData, setStudentData] = useState()
+    // const [studentData, setStudentData] = useState()
 
     //const [editedStudentData, setEditedStudentData] = useState({name:"",email:"",password:""})
 
@@ -17,11 +17,19 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
 
     const [studentName, setStudentName] = useState(null)
 
-    const handleSubmit = () => {
-      if(studentName && studentEmail && studentPassword !== ''){
-      const studentData={id:shortid.generate(), name:studentName,email:studentEmail,password:studentPassword,role:"candidate"}
+    const [confirmPassword, setConfirmPassword] = useState(null)
 
+    const [formValidation, setFormValidation] = useState(false)
+
+    const handleSubmit = () => {
+      const studentData={id:shortid.generate(), name:studentName,email:studentEmail,password:studentPassword,confirmPassword:confirmPassword, role:"candidate"}
+
+      if(studentName === '' || studentEmail === '' || confirmPassword !== studentPassword || confirmPassword === '' || studentPassword === '' ){
+        setFormValidation(true)
+      }
+      else{
         setStudentDatas([...studentDatas,studentData])
+        setFormValidation(false)
         handleClose()
         console.log(studentData)
       }
@@ -31,13 +39,16 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
       setStudentName( selectedStudent?.name || "")
       setStudentEmail( selectedStudent?.email || "")
       setStudentPassword( selectedStudent?.password || "")
+      setConfirmPassword(selectedStudent?.confirmPassword || "")
     },[selectedStudent])
 
 
-
     const handleEditSubmit = () => {
-        if (studentName && studentEmail && studentPassword !== "") {
-            setStudentDatas((studentDatas) =>
+      if(studentName === '' || studentEmail === '' || confirmPassword !== studentPassword || confirmPassword === '' || studentPassword === '' ){
+        setFormValidation(true)
+      }  
+      else {
+          setStudentDatas((studentDatas) =>
                 studentDatas.map((obj) => {
                     if (obj.id === selectedStudent.id) {
                         return { ...obj, name: studentName, email: studentEmail, password: studentPassword };
@@ -45,10 +56,10 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                     return obj;
                 })
             );
-        } else {
-            console.log("please fill out form");
+            setFormValidation(false)
+            handleClose()
         }
-        handleClose()
+        
     };
         
 
@@ -70,17 +81,19 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 type="text"
                 placeholder="Eg: John Doe"
                 onChange={e=>setStudentName(e.target.value)}
-                value={studentName || ""}
+                value={studentName}
               />
+              {formValidation && !studentName?<Form.Label className='text-danger'>enter name</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 placeholder="name@example.com"
                 onChange={e=>setStudentEmail(e.target.value)}
-                value={studentEmail || ""}
+                value={studentEmail}
               />
+              {formValidation && !studentEmail?<Form.Label className='text-danger'>enter email</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Password</Form.Label>
@@ -88,15 +101,19 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 type="password"
                 placeholder=""
                 onChange={e=>setStudentPassword(e.target.value)}
-                value={studentPassword || ""}
+                value={studentPassword}
               />
+              {formValidation && !studentPassword?<Form.Label className='text-danger'>enter password</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>ConfirmPassword</Form.Label>
               <Form.Control
                 type="password"
                 placeholder=""
+                onChange={e=>setConfirmPassword(e.target.value)}
+                value={confirmPassword}
               />
+              {formValidation && studentPassword !== confirmPassword? <Form.Label className='text-danger'>incorrect</Form.Label>:""}
             </Form.Group>
           </Form>
         </Modal.Body>

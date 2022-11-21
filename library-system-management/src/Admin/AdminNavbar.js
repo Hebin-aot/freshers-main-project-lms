@@ -19,7 +19,7 @@ function AdminNavbar() {
                   <button className='col-md-10 d-flex gap-3'> <img src="./images/allBooks.png" alt="" /> All Books</button>
                 </Link>
                 
-                <Link to="/" className='student-nav-links col-md-10'>
+                <Link to="/students" className='student-nav-links col-md-10'>
                   <button className='d-flex gap-3 col-md-10'> <img src="./images/studentsLogo.png" alt="" /> Students</button>
                 </Link>     
 

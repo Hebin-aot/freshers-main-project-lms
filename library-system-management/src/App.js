@@ -11,6 +11,7 @@ import StudentProfile from './Admin/students/StudentProfile';
 
 const studentContext = createContext()
 const bookContext = createContext()
+const issuedBooksContext = createContext()
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
   const [studentDatas, setStudentDatas] = useState([])
 
   const [bookDatas, setBookDatas] = useState([])
+
+  const [issuedBooks, setIssuedBooks] = useState([])
+
+
   
   //temporary admin details
   const adminUser = {
@@ -48,25 +53,28 @@ function App() {
     <div className="App">
       <studentContext.Provider value={[studentDatas, setStudentDatas]}>
         <bookContext.Provider value={[bookDatas, setBookDatas]}>
-          <Router>
-            <Routes>
-              <Route exact path='/' element=
-                {
+          <issuedBooksContext.Provider value={[issuedBooks, setIssuedBooks]}>
+            <Router>
+              <Routes>
+                <Route exact path='/' element=
+                  {
 
-                  (user.email !== "") ? (
+                    (user.email !== "") ? (
 
-                    <Students/>
+                      <Students/>
 
-                    ) : ( 
-                      <LoginForm Login={Login}/>
-                  )
+                      ) : ( 
+                        <LoginForm Login={Login}/>
+                    )
 
-                }/>
-              <Route path='/all-books' element={<AllBooks/>}/>
-              <Route path='/issued-books' element={<IssuedBooks/>}/>
-              <Route path='/student-profile' element={<StudentProfile/>}/>
-            </Routes>
-          </Router>
+                  }/>
+                <Route path='/students' element={<Students/>}/>
+                <Route path='/all-books' element={<AllBooks/>}/>
+                <Route path='/issued-books' element={<IssuedBooks/>}/>
+                <Route path='/student-profile' element={<StudentProfile/>}/>
+              </Routes>
+            </Router>
+          </issuedBooksContext.Provider>
         </bookContext.Provider>
       </studentContext.Provider>
     </div>
@@ -76,3 +84,4 @@ function App() {
 export default App;
 export {studentContext}
 export {bookContext}
+export {issuedBooksContext}
