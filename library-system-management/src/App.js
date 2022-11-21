@@ -11,7 +11,7 @@ import StudentProfile from './Admin/students/StudentProfile';
 
 const studentContext = createContext()
 const bookContext = createContext()
-const issuedBooksContext = createContext()
+const issuedBookContext = createContext()
 
 function App() {
 
@@ -21,7 +21,8 @@ function App() {
 
   const [bookDatas, setBookDatas] = useState([])
 
-  const [issuedBooks, setIssuedBooks] = useState([])
+  const [issuedBookDatas, setIssuedBookDatas] = useState([])
+
 
 
   
@@ -53,7 +54,7 @@ function App() {
     <div className="App">
       <studentContext.Provider value={[studentDatas, setStudentDatas]}>
         <bookContext.Provider value={[bookDatas, setBookDatas]}>
-          <issuedBooksContext.Provider value={[issuedBooks, setIssuedBooks]}>
+          <issuedBookContext.Provider value={[issuedBookDatas, setIssuedBookDatas]}>
             <Router>
               <Routes>
                 <Route exact path='/' element=
@@ -74,7 +75,7 @@ function App() {
                 <Route path='/student-profile' element={<StudentProfile/>}/>
               </Routes>
             </Router>
-          </issuedBooksContext.Provider>
+            </issuedBookContext.Provider>
         </bookContext.Provider>
       </studentContext.Provider>
     </div>
@@ -84,4 +85,5 @@ function App() {
 export default App;
 export {studentContext}
 export {bookContext}
-export {issuedBooksContext}
+export {issuedBookContext}
+

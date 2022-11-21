@@ -8,17 +8,17 @@ import { studentContext } from "../../App";
 import { useContext } from "react";
 import { bookContext } from "../../App";
 import Form from "react-bootstrap/esm/Form";
-import { issuedBooksContext } from "../../App"
+import {issuedBookContext} from "../../App"
 
 function IssuedBooks() {
+    const [issuedBookDatas, setIssuedBookDatas] = useContext(issuedBookContext);
     const [studentDatas, setStudentDatas] = useContext(studentContext);
     const [bookDatas, setBookDatas] = useContext(bookContext);
-    const [issuedBooks, setIssuedBooks] = useState(issuedBooksContext);
+    
 
     const [showIssuedBookModal, setShowIssuedBookModal] = useState(false);
     const handleShowIssuedBookModal = () => setShowIssuedBookModal(true);
 
-    
 
     return (
         <div className="d-flex">
@@ -52,8 +52,8 @@ function IssuedBooks() {
                         setStudentDatas={setStudentDatas}
                         bookDatas={bookDatas}
                         setBookDatas={setBookDatas}
-                        issuedBooks={issuedBooks}
-                        setIssuedBooks={setIssuedBooks}
+                        issuedBookDatas={issuedBookDatas}
+                        setIssuedBookDatas={setIssuedBookDatas}
                     />
 
                 <div className="book-data-container px-5">
@@ -62,20 +62,33 @@ function IssuedBooks() {
                         <p className="issuedbook-data-titles col-2 m-0">Student</p>
                         <p className="issuedbook-data-titles col-2 m-0">Issue Date</p>
                         <p className="issuedbook-data-titles col-2 m-0 ">Due Date</p>
-                        <p className="issuedbook-data-titles col-2 m-0">
-                            Fine<br></br>(Rs.10 per day)
-                        </p>
+                        <p className="issuedbook-data-titles col-2 m-0">Fine<br></br>Rs.10 per day</p>
                         <p className="issuedbook-data-titles col-2 m-0">Actions</p>
                     </div>
-
-                    {/* {
-                        issuedBooks.map(book=>{
-                            return( */}
-                                <div className="px-4 py-4 d-flex py-4 px-4 gap-2 issued-book-datas">
-                                    <p className="col-2 m-0"></p>
-                                    <p className="col-2 m-0"></p>
-                                    <p className="col-2 m-0"></p>
-                                    <p className="col-2 m-0"></p>
+                    {
+                        issuedBookDatas?.map((book)=>{
+                            return (
+                                <div key={book.id} className="px-4 py-4 d-flex py-4 px-4 gap-2 issued-book-datas">
+                                    {
+                                        bookDatas.map((allbooks)=>{
+                                            if(allbooks.id === book.issueBookName){
+                                                return(
+                                                    <p className="col-2 m-0">{allbooks?.bookName}</p>
+                                                )
+                                            }return 0
+                                        })
+                                    }
+                                    {
+                                        studentDatas.map((allstudents)=>{
+                                            if(allstudents.id === book.issueStudentName){
+                                                return(
+                                                    <p className="col-2 m-0">{allstudents?.name}</p>
+                                                )
+                                            }return 0
+                                        })
+                                    }
+                                    <p className="col-2 m-0">{book?.issueDate}</p>
+                                    <p className="col-2 m-0">{book?.issueDueDate}</p>
                                     <p className="col-2 m-0 ps-4">10</p>
                                     <button data-tip data-for="mark-return" className="issuebook-return-btn text-center" type="button">
                                         <img src="./images/returnIcon.png" alt="" />
@@ -84,12 +97,28 @@ function IssuedBooks() {
                                         Mark as returned
                                     </ReactTooltip>
                                 </div>
-                            {/* )
+                            )
                         })
-                    } */}
-                    
+                    }
+                                
                 </div>
             </div>
+
+            {/* <Modal show={showReturnBookModal} onHide={handleCloseReturnBookModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Return Book ?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure to want to return the book</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseReturnBookModal}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleCloseReturnBookModal}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal> */}
+
         </div>
     );
 }

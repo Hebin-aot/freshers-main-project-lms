@@ -12,19 +12,25 @@ function IssuedBookModal({
     bookDatas,
     setStudentDatas,
     studentDatas,
-    issuedBooks,
-    setIssuedBooks}) {
+    setIssuedBookDatas,
+    issuedBookDatas
+}) {
 
-    const [issuedBook, setIssuedBook] = useState({id:"",issueBookName:"",issueStudentName:"",issueDate:"",issueDueDate:""})
-
+    //const [issuedBook, setIssuedBook] = useState({id:"",issueBookName:"",issueStudentName:"",issueDate:"",issueDueDate:""})
+    const [issueBookName, setIssueBookName] = useState("")
+    const [issueStudentName, setissueStudentName] = useState("")
+    const [issueDate, setIssueDate] = useState("")
+    const [issueDueDate, setIssueDueDate] = useState("")
 
     const handleCloseIssuedBookModal = () => setShowIssuedBookModal(false);
 
+    const issuedBook = {id:shortid.generate(),issueBookName:issueBookName,issueStudentName:issueStudentName,issueDate:issueDate,issueDueDate:issueDueDate}
+
     const handleIssuedBookSubmit = () => {
            
-            setIssuedBooks([...issuedBooks,issuedBook])
-            console.log(issuedBooks)
+        setIssuedBookDatas([...issuedBookDatas, issuedBook])
             handleCloseIssuedBookModal()
+            console.log(issuedBookDatas)
     }
     
     return (
@@ -37,12 +43,13 @@ function IssuedBookModal({
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Book</Form.Label>
                         <Form.Select aria-label="Default select example" 
-                        onChange={e=>issuedBook({...setIssuedBook,issueBookName:e.target.value,id:shortid.generate()})}
-                        value={issuedBook.issueBookName}>
+                        onChange={e=>setIssueBookName(e.target.value)}
+                        value={issueBookName}>
+                            <option value="1">select book name</option>
                             {
-                                bookDatas.map((item)=>{
+                                bookDatas?.map((item)=>{
                                     return(
-                                        <option value={item.bookName} >{item.bookName}</option>
+                                        <option value={item.id}>{item.bookName}</option>
                                     )
                                 })
                             } 
@@ -50,11 +57,14 @@ function IssuedBookModal({
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Student</Form.Label>
-                        <Form.Select aria-label="Default select example">
+                        <Form.Select aria-label="Default select example"
+                        onChange={e=>setissueStudentName(e.target.value)}
+                        value={issueStudentName}>
+                            <option value="1">select student</option>
                             {
-                                studentDatas.map((student)=>{
+                                studentDatas?.map((student)=>{
                                     return(
-                                        <option value={student.name}>{student.name}</option>
+                                        <option value={student.id}>{student.name}</option>
                                     )            
                                 })
                             }
@@ -63,12 +73,16 @@ function IssuedBookModal({
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Issue Date</Form.Label>
-                        <Form.Control type="date" placeholder="name@example.com" autoFocus 
+                        <Form.Control type="date" placeholder="name@example.com"
+                        onChange={e=>setIssueDate(e.target.value)}
+                        value={issueDate}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Due Date</Form.Label>
-                        <Form.Control type="date" placeholder="" autoFocus 
+                        <Form.Control type="date" placeholder=""
+                        onChange={e=>setIssueDueDate(e.target.value)}
+                        value={issueDueDate}
                         />
                     </Form.Group>
                 </Form>
