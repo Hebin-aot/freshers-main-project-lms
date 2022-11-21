@@ -9,15 +9,39 @@ import { useContext } from "react";
 import { bookContext } from "../../App";
 import Form from "react-bootstrap/esm/Form";
 import {issuedBookContext} from "../../App"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function IssuedBooks() {
     const [issuedBookDatas, setIssuedBookDatas] = useContext(issuedBookContext);
     const [studentDatas, setStudentDatas] = useContext(studentContext);
     const [bookDatas, setBookDatas] = useContext(bookContext);
+
+    const [returnBookId, setReturnBookId] = useState("")
+    //const [returnBookStatus, setreturnBookStatus] = useState(false)
+
+    const [showReturnBookModal, setShowReturnBookModal] = useState(false);
     
 
     const [showIssuedBookModal, setShowIssuedBookModal] = useState(false);
     const handleShowIssuedBookModal = () => setShowIssuedBookModal(true);
+
+    const handleCloseReturnBookModal = () => setShowReturnBookModal(false);
+    const handleShowReturnBookModal = () => setShowReturnBookModal(true);
+
+    const handleSubmitReturnBookModal = () => {
+        issuedBookDatas.map((object)=>{
+            if(object.id === returnBookId){
+                object.returnState = true
+            }
+            return(object)
+        })
+        handleCloseReturnBookModal()
+    }
+    
+    const returnId = (rId) => {
+        setReturnBookId(rId)
+    }
 
 
     return (
@@ -67,44 +91,49 @@ function IssuedBooks() {
                     </div>
                     {
                         issuedBookDatas?.map((book)=>{
-                            return (
-                                <div key={book.id} className="px-4 py-4 d-flex py-4 px-4 gap-2 issued-book-datas">
-                                    {
-                                        bookDatas.map((allbooks)=>{
-                                            if(allbooks.id === book.issueBookName){
-                                                return(
-                                                    <p className="col-2 m-0">{allbooks?.bookName}</p>
-                                                )
-                                            }return 0
-                                        })
-                                    }
-                                    {
-                                        studentDatas.map((allstudents)=>{
-                                            if(allstudents.id === book.issueStudentName){
-                                                return(
-                                                    <p className="col-2 m-0">{allstudents?.name}</p>
-                                                )
-                                            }return 0
-                                        })
-                                    }
-                                    <p className="col-2 m-0">{book?.issueDate}</p>
-                                    <p className="col-2 m-0">{book?.issueDueDate}</p>
-                                    <p className="col-2 m-0 ps-4">10</p>
-                                    <button data-tip data-for="mark-return" className="issuebook-return-btn text-center" type="button">
-                                        <img src="./images/returnIcon.png" alt="" />
-                                    </button>
-                                    <ReactTooltip id="mark-return" place="top" effect="solid">
-                                        Mark as returned
-                                    </ReactTooltip>
-                                </div>
-                            )
+                            if(book.returnState === false){
+                                return (
+                                    <div key={book.id} className="px-4 py-4 d-flex py-4 px-4 gap-2 issued-book-datas">
+                                        {
+                                            bookDatas.map((allbooks)=>{
+                                                if(allbooks.id === book.issueBookName){
+                                                    return(
+                                                        <p className="col-2 m-0">{allbooks?.bookName}</p>
+                                                    )
+                                                }
+                                            })
+                                        }
+                                        {
+                                            studentDatas.map((allstudents)=>{
+                                                if(allstudents.id === book.issueStudentName){
+                                                    return(
+                                                        <p className="col-2 m-0">{allstudents?.name}</p>
+                                                    )
+                                                }
+                                            })
+                                        }
+                                        <p className="col-2 m-0">{book?.issueDate}</p>
+                                        <p className="col-2 m-0">{book?.issueDueDate}</p>
+                                        <p className="col-2 m-0 ps-4">10</p>
+                                        <button data-tip data-for="mark-return" className="issuebook-return-btn text-center" type="button" 
+                                        onClick={()=>{handleShowReturnBookModal();returnId(book.id)}}>
+                                            <img src="./images/returnIcon.png" alt="" />
+                                        </button>
+                                        <ReactTooltip id="mark-return" place="top" effect="solid">
+                                            Mark as returned
+                                        </ReactTooltip>
+                                    </div>
+                                )
+                            }
+                            
                         })
                     }
                                 
                 </div>
             </div>
 
-            {/* <Modal show={showReturnBookModal} onHide={handleCloseReturnBookModal}>
+
+            <Modal show={showReturnBookModal} onHide={handleCloseReturnBookModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Return Book ?</Modal.Title>
                 </Modal.Header>
@@ -113,11 +142,12 @@ function IssuedBooks() {
                 <Button variant="secondary" onClick={handleCloseReturnBookModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleCloseReturnBookModal}>
+                <Button variant="primary" onClick={()=>handleSubmitReturnBookModal()}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
-            </Modal> */}
+            </Modal> 
+
 
         </div>
     );

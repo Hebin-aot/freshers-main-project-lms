@@ -21,10 +21,9 @@ function IssuedBookModal({
     const [issueStudentName, setissueStudentName] = useState("")
     const [issueDate, setIssueDate] = useState("")
     const [issueDueDate, setIssueDueDate] = useState("")
-
     const handleCloseIssuedBookModal = () => setShowIssuedBookModal(false);
 
-    const issuedBook = {id:shortid.generate(),issueBookName:issueBookName,issueStudentName:issueStudentName,issueDate:issueDate,issueDueDate:issueDueDate}
+    const issuedBook = {id:shortid.generate(),issueBookName:issueBookName,issueStudentName:issueStudentName,issueDate:issueDate,issueDueDate:issueDueDate,returnState:false}
 
     const handleIssuedBookSubmit = () => {
            
