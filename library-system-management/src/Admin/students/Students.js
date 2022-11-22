@@ -10,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/esm/Form";
 import { Link } from "react-router-dom";
+import { studentProfileContext } from "../../App";
+
 
 function Students() {
     //States for Modal
@@ -31,6 +33,8 @@ function Students() {
     //state containing all datas of student
     const [studentDatas, setStudentDatas] = useContext(studentContext);
 
+    const [studentProfileDetails, setStudentProfileDetails] = useContext(studentProfileContext)
+
     //state for selecting id of student to delete
     const [dltId, setdltId] = useState("");
 
@@ -44,6 +48,7 @@ function Students() {
         setdltId(id);
     };
 
+
     //function for editing student
     const editStudent = (student) => {
         setSelectedStudent(student);
@@ -54,9 +59,15 @@ function Students() {
         setSelectedStudent(null);
     };
 
+
+    const handleStudentProfileView = (item) => {
+        setStudentProfileDetails(item)
+        console.log(studentProfileDetails)
+    }
+
     return (
         <div className="d-flex">
-            <AdminNavbar />
+            <AdminNavbar/>
             <div className="student-container col-md-10 p-5">
                 <form action="">
                     <div className="student-title p-3">
@@ -141,7 +152,7 @@ function Students() {
                                             <img src="./images/deleteIcon.png" alt="" />
                                         </button>
                                         <Link to="/student-profile">
-                                            <button className="action-buttons">
+                                            <button className="action-buttons" onClick={()=>handleStudentProfileView(item)}>
                                                 <img src="./images/eyeIcon.png" alt="" />
                                             </button>
                                         </Link>
@@ -151,7 +162,7 @@ function Students() {
                         })}
                 </div>
             </div>
-
+                        
             {/* delete pop up */}
             <Modal show={deleteModal} onHide={handleDeleteModalClose}>
                 <Modal.Header closeButton>

@@ -20,7 +20,7 @@ function AddBookModal({
     const [author, setAuthor] = useState(null);
     const [language, setLanguage] = useState(null);
     const [totalCopies, setTotalCopies] = useState(null);
-    const [remaining, setRemaning] = useState(null);
+    const [remaining, setRemaning] = useState();
 
     const [formValidation, setFormValidation] = useState(false)
 
@@ -115,7 +115,9 @@ function AddBookModal({
                             <option> select Language</option>
                             <option value="English">English</option>
                             <option value="Malayalam">Malayalam</option>
-                            <option value="Hindi">Hindi</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Portuguese">Portuguese</option>
                         </Form.Select>
                         {formValidation && !language ?<Form.Label className="text-danger">Please select the language</Form.Label>:""}
                     </Form.Group>

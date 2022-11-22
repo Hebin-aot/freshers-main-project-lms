@@ -48,7 +48,7 @@ function IssuedBookModal({
                             {
                                 bookDatas?.map((item)=>{
                                     return(
-                                        <option value={item.id}>{item.bookName}</option>
+                                        <option key={shortid.generate()} value={item.id}>{item.bookName}</option>
                                     )
                                 })
                             } 
@@ -63,7 +63,7 @@ function IssuedBookModal({
                             {
                                 studentDatas?.map((student)=>{
                                     return(
-                                        <option value={student.id}>{student.name}</option>
+                                        <option key={shortid.generate()} value={student.id}>{student.name}</option>
                                     )            
                                 })
                             }

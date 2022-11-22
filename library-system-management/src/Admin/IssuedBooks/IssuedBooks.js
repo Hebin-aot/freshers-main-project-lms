@@ -11,6 +11,7 @@ import Form from "react-bootstrap/esm/Form";
 import {issuedBookContext} from "../../App"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import shortid from "shortid";
 
 function IssuedBooks() {
     const [issuedBookDatas, setIssuedBookDatas] = useContext(issuedBookContext);
@@ -18,6 +19,7 @@ function IssuedBooks() {
     const [bookDatas, setBookDatas] = useContext(bookContext);
 
     const [returnBookId, setReturnBookId] = useState("")
+    const [bookTitle, setBookTitle] = useState('')
     //const [returnBookStatus, setreturnBookStatus] = useState(false)
 
     const [showReturnBookModal, setShowReturnBookModal] = useState(false);
@@ -36,12 +38,20 @@ function IssuedBooks() {
             }
             return(object)
         })
+        bookDatas.map((object)=>{
+            if(object.id == bookTitle){
+                object.remaining = ++object.remaining
+            }
+        })
+
         handleCloseReturnBookModal()
     }
     
     const returnId = (rId) => {
         setReturnBookId(rId)
     }
+
+
 
 
     return (
@@ -93,12 +103,12 @@ function IssuedBooks() {
                         issuedBookDatas?.map((book)=>{
                             if(book.returnState === false){
                                 return (
-                                    <div key={book.id} className="px-4 py-4 d-flex py-4 px-4 gap-2 issued-book-datas">
+                                    <div key={book.id} className="px-4 py-4 d-flex py-4 px-4 gap-2 issuedbook-table-contents">
                                         {
                                             bookDatas.map((allbooks)=>{
                                                 if(allbooks.id === book.issueBookName){
                                                     return(
-                                                        <p className="col-2 m-0">{allbooks?.bookName}</p>
+                                                        <p key={shortid.generate()} className="col-2 m-0">{allbooks?.bookName}</p>
                                                     )
                                                 }
                                             })
@@ -107,7 +117,7 @@ function IssuedBooks() {
                                             studentDatas.map((allstudents)=>{
                                                 if(allstudents.id === book.issueStudentName){
                                                     return(
-                                                        <p className="col-2 m-0">{allstudents?.name}</p>
+                                                        <p key={shortid.generate()} className="col-2 m-0">{allstudents?.name}</p>
                                                     )
                                                 }
                                             })
@@ -116,7 +126,7 @@ function IssuedBooks() {
                                         <p className="col-2 m-0">{book?.issueDueDate}</p>
                                         <p className="col-2 m-0 ps-4">10</p>
                                         <button data-tip data-for="mark-return" className="issuebook-return-btn text-center" type="button" 
-                                        onClick={()=>{handleShowReturnBookModal();returnId(book.id)}}>
+                                        onClick={()=>{handleShowReturnBookModal();returnId(book.id);setBookTitle(book.issueBookName)}}>
                                             <img src="./images/returnIcon.png" alt="" />
                                         </button>
                                         <ReactTooltip id="mark-return" place="top" effect="solid">

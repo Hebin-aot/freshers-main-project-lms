@@ -24,10 +24,6 @@
     background-color: #ec8d7e;
 }
 
-.admin-navigation-tab-container button:focus{
-    background-color: #ec8d7e;
-}
-
 
 .lmsWhiteText{
     font-weight: 700;
@@ -37,5 +33,4 @@
 
 .student-nav-links{
     text-decoration: none;
-
 }

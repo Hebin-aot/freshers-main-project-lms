@@ -31,6 +31,7 @@
     font-weight: 500;
     font-size: 16px;
     color: #09174A;
+    border-bottom:1px solid #E3E3E3 ;
 }
 
 .book-data-container{
@@ -39,4 +40,10 @@
 
 .issuedbook-container{
     background-color: #F5F5F5;
+}
+
+.issuedbook-table-contents{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
 }

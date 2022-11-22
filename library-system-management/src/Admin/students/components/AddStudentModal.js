@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import {  useEffect, useState } from 'react';
 import shortid from "shortid"
 
+
+
 function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,setEditModal,selectedStudent,setSelectedStudent}) {
 
     
@@ -32,6 +34,10 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
         setFormValidation(false)
         handleClose()
         console.log(studentData)
+        setStudentEmail('')
+        setStudentPassword('')
+        setStudentName('')
+        setConfirmPassword('')
       }
     }
 
@@ -83,7 +89,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 onChange={e=>setStudentName(e.target.value)}
                 value={studentName}
               />
-              {formValidation && !studentName?<Form.Label className='text-danger'>enter name</Form.Label>:""}
+              {formValidation && !studentName?<Form.Label className='text-danger ps-2'>Please enter the name !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
@@ -93,7 +99,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 onChange={e=>setStudentEmail(e.target.value)}
                 value={studentEmail}
               />
-              {formValidation && !studentEmail?<Form.Label className='text-danger'>enter email</Form.Label>:""}
+              {formValidation && !studentEmail?<Form.Label className='text-danger ps-2'>Please enter the email !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Password</Form.Label>
@@ -103,7 +109,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 onChange={e=>setStudentPassword(e.target.value)}
                 value={studentPassword}
               />
-              {formValidation && !studentPassword?<Form.Label className='text-danger'>enter password</Form.Label>:""}
+              {formValidation && !studentPassword?<Form.Label className='text-danger ps-2'>Please enter the password !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>ConfirmPassword</Form.Label>
@@ -113,7 +119,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
                 onChange={e=>setConfirmPassword(e.target.value)}
                 value={confirmPassword}
               />
-              {formValidation && studentPassword !== confirmPassword? <Form.Label className='text-danger'>incorrect</Form.Label>:""}
+              {formValidation && studentPassword !== confirmPassword? <Form.Label className='text-danger ps-2'>Incorrect</Form.Label>:""}
             </Form.Group>
           </Form>
         </Modal.Body>

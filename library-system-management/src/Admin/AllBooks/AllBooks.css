@@ -50,3 +50,51 @@
 .bookTitles{
     border-bottom:1px solid #E3E3E3 ;
 }
+
+.student-profile-name{
+    font-weight: 600;
+    font-size: 18px;
+    color: #282829;
+}
+
+.student-profile-mail{
+    font-weight: 500;
+    font-size: 16px;
+    color: #414141;
+}
+
+.student-card-details{
+    font-weight: 500;
+    font-size: 14px;
+    color: #8B8B8B;
+}
+
+.name-mail-container{
+    border-right: 1px solid #ECECEC;
+}
+
+.fine-books{
+    font-weight: 500;
+    font-size: 14px;
+    color: #414141;
+}
+
+.issuedbooks{
+    font-weight: 600;
+    font-size: 16px;
+    color: #282829;  
+}
+
+.student-profile-table-titles{
+    font-weight: 500;
+    font-size: 16px;
+    color: #646464;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.student-profile-table-contents{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+    border-bottom: 1px solid #E3E3E3;
+}
