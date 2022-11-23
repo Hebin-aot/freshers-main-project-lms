@@ -65,6 +65,8 @@ function Students() {
         console.log(studentProfileDetails)
     }
 
+    
+
     return (
         <div className="d-flex">
             <AdminNavbar/>

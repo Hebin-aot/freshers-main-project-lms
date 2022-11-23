@@ -21,17 +21,43 @@ function IssuedBookModal({
     const [issueStudentName, setissueStudentName] = useState("")
     const [issueDate, setIssueDate] = useState("")
     const [issueDueDate, setIssueDueDate] = useState("")
+    const [issueFine, setIssueFine] = useState("")
     const handleCloseIssuedBookModal = () => setShowIssuedBookModal(false);
 
-    const issuedBook = {id:shortid.generate(),issueBookName:issueBookName,issueStudentName:issueStudentName,issueDate:issueDate,issueDueDate:issueDueDate,returnState:false}
+    const issuedBook = {
+        id:shortid.generate(),
+        issueBookName:issueBookName,
+        issueStudentName:issueStudentName,
+        issueDate:issueDate,
+        issueDueDate:issueDueDate,
+        returnState:false
+    }
 
     const handleIssuedBookSubmit = () => {
-           
+           fineFunction()
         setIssuedBookDatas([...issuedBookDatas, issuedBook])
             handleCloseIssuedBookModal()
             console.log(issuedBookDatas)
+            
+        // var dateDiff = new Date().getTime() - new Date(issueDueDate).getTime();
+        // var numOfDays = Math.floor(dateDiff/(1000*60*60*24));
+        
+        // var fine = (numOfDays*10)
+        // console.log(fine);
+        // setIssueFine(fine)
+        
+    }
+
+    const fineFunction = () => {
+        var dateDiff = new Date().getTime() - new Date(issueDueDate).getTime();
+        var numOfDays = Math.floor(dateDiff/(1000*60*60*24));
+
+        var fine = (numOfDays*10)
+        setIssueFine(fine)
     }
     
+
+
     return (
         <Modal show={showIssuedBookModal} onHide={handleCloseIssuedBookModal}>
             <Modal.Header closeButton>

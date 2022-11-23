@@ -4,11 +4,10 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/esm/Form';
 import { useContext } from 'react';
 import { studentProfileContext } from '../../App';
-import { useState } from 'react';
 
 function StudentProfile() {
 
-    const [studentProfileDetails, setStudentProfileDetails] = useContext(studentProfileContext)
+    const [studentProfileDetails] = useContext(studentProfileContext)
 
   return (
       <div className="d-flex">
