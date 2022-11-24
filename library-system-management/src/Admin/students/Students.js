@@ -10,7 +10,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/esm/Form";
 import { Link } from "react-router-dom";
-import { studentProfileContext } from "../../App";
 
 
 function Students() {
@@ -32,8 +31,6 @@ function Students() {
 
     //state containing all datas of student
     const [studentDatas, setStudentDatas] = useContext(studentContext);
-
-    const [studentProfileDetails, setStudentProfileDetails] = useContext(studentProfileContext)
 
     //state for selecting id of student to delete
     const [dltId, setdltId] = useState("");
@@ -58,12 +55,6 @@ function Students() {
     const handleAddStudent = () => {
         setSelectedStudent(null);
     };
-
-
-    const handleStudentProfileView = (item) => {
-        setStudentProfileDetails(item)
-        console.log(studentProfileDetails)
-    }
 
     
 
@@ -154,7 +145,7 @@ function Students() {
                                             <img src="./images/deleteIcon.png" alt="" />
                                         </button>
                                         <Link to={`/student-profile/${item.id}`}>
-                                            <button className="action-buttons" onClick={()=>handleStudentProfileView(item)}>
+                                            <button className="action-buttons" >
                                                 <img src="./images/eyeIcon.png" alt="" />
                                             </button>
                                         </Link>

@@ -43,20 +43,10 @@ const getLocalIssuedBooks = () => {
   }
 }
 
-const getLocalStudentProfile = () => {
-  let studentprofile = localStorage.getItem('studentProfile');
-
-  if(studentprofile){
-    return JSON.parse(localStorage.getItem('studentProfile'));
-  }else{
-    return [];
-  }
-}
 
 const studentContext = createContext()
 const bookContext = createContext()
 const issuedBookContext = createContext()
-const studentProfileContext = createContext()
 
 function App() {
   
@@ -66,7 +56,6 @@ function App() {
 
   const [issuedBookDatas, setIssuedBookDatas] = useState(getLocalIssuedBooks())
 
-  const [studentProfileDetails, setStudentProfileDetails] = useState(getLocalStudentProfile())
 
 
   //add to local storage
@@ -82,9 +71,6 @@ function App() {
     localStorage.setItem('issuedBooks' ,JSON.stringify(issuedBookDatas))
   },[issuedBookDatas])
 
-  useEffect(()=>{
-    localStorage.setItem('studentProfile' ,JSON.stringify(studentProfileDetails))
-  },[studentProfileDetails])
   
   //temporary admin details
   const adminUser = {
@@ -115,7 +101,6 @@ function App() {
       <studentContext.Provider value={[studentDatas, setStudentDatas]}>
         <bookContext.Provider value={[bookDatas, setBookDatas]}>
           <issuedBookContext.Provider value={[issuedBookDatas, setIssuedBookDatas]}>
-            <studentProfileContext.Provider value={[studentProfileDetails, setStudentProfileDetails]} >
               <Router>
                 <Routes>
                   <Route exact path='/' element=
@@ -136,7 +121,6 @@ function App() {
                   <Route path='/student-profile/:id' element={<StudentProfile/>}/>
                 </Routes>
               </Router>
-            </studentProfileContext.Provider>
           </issuedBookContext.Provider>
         </bookContext.Provider>
       </studentContext.Provider>
@@ -148,5 +132,3 @@ export default App;
 export {studentContext}
 export {bookContext}
 export {issuedBookContext}
-export {studentProfileContext}
-

@@ -23,7 +23,8 @@ function IssuedBooks() {
     const handleShowReturnBookModal = () => setShowReturnBookModal(true);
 
     const [bookTitle, setBookTitle] = useState("");
-    //const [returnBookStatus, setreturnBookStatus] = useState(false)
+
+    const [returnDate, setReturnDate] = useState()
 
     const [showReturnBookModal, setShowReturnBookModal] = useState(false);
 
@@ -33,9 +34,14 @@ function IssuedBooks() {
     const handleSubmitReturnBookModal = () => {
         issuedBookDatas.map((book) => {
             if (book.id === returnBookId) {
+
+                let today = new Date();
+                let date=today.getDate() + "-"+ parseInt(today.getMonth()+1) +"-"+today.getFullYear();
+                console.log(date)
+
                 book.returnState = true;
+                book.issueReturnDate = date
             }
-            return book;
         });
 
         bookDatas.map((object) => {
@@ -50,6 +56,9 @@ function IssuedBooks() {
     const returnId = (rId) => {
         setReturnBookId(rId);
     };
+    
+
+
 
     return (
         <div className="d-flex">
@@ -106,6 +115,9 @@ function IssuedBooks() {
                                     returnId={returnId}
                                     setShowReturnBookModal={setShowReturnBookModal}
                                     handleShowReturnBookModal={handleShowReturnBookModal}
+                                    bookTitle={bookTitle}
+                                    setBookTitle={setBookTitle}
+                                    
                                 />
                             );
                         }
@@ -119,10 +131,10 @@ function IssuedBooks() {
                 </Modal.Header>
                 <Modal.Body>Are you sure to want to return the book</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseReturnBookModal}>
+                    <Button variant="danger" onClick={handleCloseReturnBookModal}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={() => handleSubmitReturnBookModal()}>
+                    <Button variant="danger" onClick={() => handleSubmitReturnBookModal()}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

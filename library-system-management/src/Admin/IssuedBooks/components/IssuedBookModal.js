@@ -21,7 +21,6 @@ function IssuedBookModal({
     const [issueStudentName, setissueStudentName] = useState("")
     const [issueDate, setIssueDate] = useState("")
     const [issueDueDate, setIssueDueDate] = useState("")
-    const [issueFine, setIssueFine] = useState("")
     const handleCloseIssuedBookModal = () => setShowIssuedBookModal(false);
 
     const issuedBook = {
@@ -30,11 +29,12 @@ function IssuedBookModal({
         issueStudentName:issueStudentName,
         issueDate:issueDate,
         issueDueDate:issueDueDate,
+        issueReturnDate:'-',
         returnState:false
     }
 
     const handleIssuedBookSubmit = () => {
-           fineFunction()
+           //fineFunction()
         setIssuedBookDatas([...issuedBookDatas, issuedBook])
             handleCloseIssuedBookModal()
             console.log(issuedBookDatas)
@@ -48,13 +48,13 @@ function IssuedBookModal({
         
     }
 
-    const fineFunction = () => {
-        var dateDiff = new Date().getTime() - new Date(issueDueDate).getTime();
-        var numOfDays = Math.floor(dateDiff/(1000*60*60*24));
+    // const fineFunction = () => {
+    //     var dateDiff = new Date().getTime() - new Date(issueDueDate).getTime();
+    //     var numOfDays = Math.floor(dateDiff/(1000*60*60*24));
 
-        var fine = (numOfDays*10)
-        setIssueFine(fine)
-    }
+    //     var fine = (numOfDays*10)
+    //     setIssueFine(fine)
+    // }
     
 
 

@@ -3,23 +3,18 @@ import ReactTooltip from "react-tooltip";
 import shortid from "shortid";
 import { bookContext } from "../../../App";
 import { studentContext } from "../../../App";
-import { Modal, Button } from "bootstrap";
 
-function IssuedBookList({ book, returnId, setShowReturnBookModal, handleShowReturnBookModal }) {
+function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, setBookTitle}) {
     const [bookDatas, setBookDatas] = useContext(bookContext);
     const [studentDatas, setStudentDatas] = useContext(studentContext);
 
-    const [bookTitle, setBookTitle] = useState("");
     const [dayDiff, setDayDiff] = useState(null);
-    // const handleCloseReturnBookModal = () => setShowReturnBookModal(false);
-    // const handleShowReturnBookModal = () => setShowReturnBookModal(true);
 
     var currentIssueDate = new Date(book?.issueDate);
     var Issuemonth = currentIssueDate.getMonth() + 1;
     var Issuedate = currentIssueDate.getDate();
     var Issueyear = currentIssueDate.getFullYear();
     const issueddatedisplay = Issuedate + "-" + Issuemonth + "-" + Issueyear;
-    // const issueddate = issueobj.issuedate.getDate()+"-"+ issueobj.issuedate.getMonth()+1 + "-" + issueobj.issuedate.getFullYear()
 
     var currentDueDate = new Date(book?.issueDueDate);
     var Duemonth = currentDueDate.getMonth() + 1;
@@ -35,6 +30,7 @@ function IssuedBookList({ book, returnId, setShowReturnBookModal, handleShowRetu
             setDayDiff(diffDays);
         }
     }, [book]);
+
 
     return (
         <div className="px-4 py-4 d-flex py-4 px-4 gap-2 issuedbook-table-contents">
@@ -68,6 +64,7 @@ function IssuedBookList({ book, returnId, setShowReturnBookModal, handleShowRetu
                     handleShowReturnBookModal();
                     returnId(book.id);
                     setBookTitle(book.issueBookName);
+                    
                 }}
             >
                 <img src="./images/returnIcon.png" alt="" />
