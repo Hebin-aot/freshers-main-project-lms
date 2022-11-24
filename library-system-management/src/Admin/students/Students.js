@@ -153,7 +153,7 @@ function Students() {
                                         >
                                             <img src="./images/deleteIcon.png" alt="" />
                                         </button>
-                                        <Link to="/student-profile">
+                                        <Link to={`/student-profile/${item.id}`}>
                                             <button className="action-buttons" onClick={()=>handleStudentProfileView(item)}>
                                                 <img src="./images/eyeIcon.png" alt="" />
                                             </button>

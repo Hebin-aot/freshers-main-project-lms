@@ -133,7 +133,7 @@ function App() {
                   <Route path='/students' element={<Students/>}/>
                   <Route path='/all-books' element={<AllBooks/>}/>
                   <Route path='/issued-books' element={<IssuedBooks/>}/>
-                  <Route path='/student-profile' element={<StudentProfile/>}/>
+                  <Route path='/student-profile/:id' element={<StudentProfile/>}/>
                 </Routes>
               </Router>
             </studentProfileContext.Provider>

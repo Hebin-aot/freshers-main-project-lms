@@ -4,9 +4,19 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/esm/Form';
 import { useContext } from 'react';
 import { studentProfileContext } from '../../App';
+import { useParams } from 'react-router-dom';
+import { issuedBookContext } from '../../App';
+import { bookContext } from "../../App";
+import { studentContext } from "../../App";
 
 function StudentProfile() {
 
+    let {id} = useParams()
+
+
+    const [issuedBookDatas, setIssuedBookDatas] = useContext(issuedBookContext);
+    const [studentDatas, setStudentDatas] = useContext(studentContext);
+    const [bookDatas, setBookDatas] = useContext(bookContext);
     const [studentProfileDetails] = useContext(studentProfileContext)
 
   return (
@@ -15,13 +25,30 @@ function StudentProfile() {
           <div className="p-5 col-md-10">
               <div className='d-flex'>
                 <p className='student-card-details'>Students/</p>
-                <p className='fine-books'>{studentProfileDetails.name}</p>
+
+                <p className='fine-books'>{studentDatas.map((student) => {
+                    if(id === student.id){
+                        return (student.name)
+                    }
+                })}</p>
               </div>  
               <Card>
                   <Card.Body className="d-flex">
                       <div className="col-8 name-mail-container">
-                          <p className='student-profile-name'>{studentProfileDetails.name}</p>
-                          <p className='student-profile-mail'>{studentProfileDetails.email}</p>
+                          <p className='student-profile-name'>{
+                            studentDatas.map((student) => {
+                                if(id === student.id){
+                                    return (student.name)
+                                }
+                            })
+                          }</p>
+                          <p className='student-profile-mail'>{
+                            studentDatas.map((student) => {
+                                if(id === student.id){
+                                    return (student.email)
+                                }
+                            })
+                          }</p>
                       </div>
                       <div className="col-3 px-4 d-flex flex-column gap-4 student-card-details">
                           <p className="m-0">Total Books issued</p>
@@ -48,14 +75,24 @@ function StudentProfile() {
                       <p className="col-2 m-0">Return Date</p>
                       <p className="col-2 m-0">Fine<br/>(Rs. 10 per day)</p>
                   </div>
-                  <div className="d-flex py-4 student-profile-table-contents">
-                      <p className="col-2 m-0">It Start With Us</p>
-                      <p className="col-2 m-0">Collen Hoover</p>
-                      <p className="col-2 m-0">10-11-2022 </p>
-                      <p className="col-2 m-0">18-11-2022</p>
-                      <p className="col-2 m-0">18-11-2022</p>
-                      <p className="col-2 m-0 ps-5">10</p>
-                  </div>
+                
+                {
+                    issuedBookDatas.map((obj)=>{
+                        if(obj.id == id){
+                            return(
+                                <div className="d-flex py-4 student-profile-table-contents">
+                                    <p className="col-2 m-0">{}</p>
+                                    <p className="col-2 m-0">Collen Hoover</p>
+                                    <p className="col-2 m-0">{obj.issueDate}</p>
+                                    <p className="col-2 m-0">{obj.issueDueDate}</p> 
+                                    <p className="col-2 m-0">18-11-2022</p>
+                                    <p className="col-2 m-0 ps-5">10</p>
+                                </div>
+                        )
+                        }
+                    })
+                }
+                
               </div>
           </div>
       </div>
