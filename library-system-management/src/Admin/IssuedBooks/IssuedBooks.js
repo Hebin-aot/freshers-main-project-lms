@@ -22,6 +22,8 @@ function IssuedBooks() {
     const handleCloseReturnBookModal = () => setShowReturnBookModal(false);
     const handleShowReturnBookModal = () => setShowReturnBookModal(true);
 
+    const [fine, setFine] = useState()
+
     const [bookTitle, setBookTitle] = useState("");
 
     const [returnDate, setReturnDate] = useState()
@@ -41,6 +43,8 @@ function IssuedBooks() {
 
                 book.returnState = true;
                 book.issueReturnDate = date
+                book.fine = fine
+                
             }
         });
 
@@ -117,7 +121,7 @@ function IssuedBooks() {
                                     handleShowReturnBookModal={handleShowReturnBookModal}
                                     bookTitle={bookTitle}
                                     setBookTitle={setBookTitle}
-                                    
+                                    setFine={setFine}
                                 />
                             );
                         }
@@ -127,16 +131,16 @@ function IssuedBooks() {
 
             <Modal show={showReturnBookModal} onHide={handleCloseReturnBookModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Return Book ?</Modal.Title>
+                    <Modal.Title className="student-title border-0">Return Book ?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Are you sure to want to return the book</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleCloseReturnBookModal}>
+                    <button className="issue-book-modal-cancel px-3 py-2" onClick={handleCloseReturnBookModal}>
                         Close
-                    </Button>
-                    <Button variant="danger" onClick={() => handleSubmitReturnBookModal()}>
+                    </button>
+                    <button className="issue-book-modal-button px-3 py-2" onClick={() => handleSubmitReturnBookModal()}>
                         Save Changes
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
         </div>

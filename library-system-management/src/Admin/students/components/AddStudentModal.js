@@ -77,12 +77,12 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{editModal? "Edit Student":"Add Student"}</Modal.Title>
+          <Modal.Title className="student-title border-0">{editModal? "Edit Student":"Add Student"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Name</Form.Label>
+              <Form.Label className="modal-sub-heads">Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Eg: John Doe"
@@ -92,7 +92,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
               {formValidation && !studentName?<Form.Label className='text-danger ps-2'>Please enter the name !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="modal-sub-heads">Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
@@ -102,7 +102,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
               {formValidation && !studentEmail?<Form.Label className='text-danger ps-2'>Please enter the email !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="modal-sub-heads">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder=""
@@ -112,7 +112,7 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
               {formValidation && !studentPassword?<Form.Label className='text-danger ps-2'>Please enter the password !</Form.Label>:""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>ConfirmPassword</Form.Label>
+              <Form.Label className="modal-sub-heads">ConfirmPassword</Form.Label>
               <Form.Control
                 type="password"
                 placeholder=""
@@ -124,12 +124,12 @@ function AddStudentModal({show,setShow,setStudentDatas,studentDatas,editModal,se
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <button className="issue-book-modal-cancel px-3 py-2" onClick={handleClose}>
             Cancel
-          </Button>
-          <Button variant="danger" onClick={editModal? handleEditSubmit:handleSubmit }>
+          </button>
+          <button className="issue-book-modal-button px-4 py-2" onClick={editModal? handleEditSubmit:handleSubmit }>
           {editModal? "Save" :"Submit" }
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </>

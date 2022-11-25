@@ -159,16 +159,16 @@ function Students() {
             {/* delete pop up */}
             <Modal show={deleteModal} onHide={handleDeleteModalClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Alert</Modal.Title>
+                    <Modal.Title className="student-title border-0" >Alert</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Are you sure to delete</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleDeleteModalClose}>
+                    <button className="issue-book-modal-cancel px-3 py-2" onClick={handleDeleteModalClose}>
                         Cancel
-                    </Button>
-                    <Button variant="danger" onClick={() => handleStudentDelete(dltId)}>
+                    </button>
+                    <button className="issue-book-modal-button px-3 py-2" onClick={() => handleStudentDelete(dltId)}>
                         Delete
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
         </div>

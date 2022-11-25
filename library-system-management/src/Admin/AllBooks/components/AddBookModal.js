@@ -82,7 +82,7 @@ function AddBookModal({
             <Modal.Header closeButton>
                 <Modal.Title>{bookEditModal ? "Edit Book" : "Add Book"}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="modal-sub-heads">
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Name</Form.Label>
@@ -145,12 +145,12 @@ function AddBookModal({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleAddBookModalClose}>
+                <button className="issue-book-modal-cancel px-3 py-2" onClick={handleAddBookModalClose}>
                     Cancel
-                </Button>
-                <Button variant="danger" onClick={bookEditModal ? handleEditBookSubmit : handleAddBookModalSubmit}>
+                </button>
+                <button className="issue-book-modal-button px-3 py-2" onClick={bookEditModal ? handleEditBookSubmit : handleAddBookModalSubmit}>
                     {bookEditModal ? "save" : "submit"}
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );

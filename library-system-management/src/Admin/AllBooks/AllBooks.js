@@ -135,12 +135,12 @@ function AllBooks() {
               </Modal.Header>
               <Modal.Body>Are you sure to delete the book</Modal.Body>
               <Modal.Footer>
-                  <Button variant="secondary" onClick={handleDeleteBookModalClose}>
+                  <button className="issue-book-modal-cancel px-3 py-2" onClick={handleDeleteBookModalClose}>
                       Cancel
-                  </Button>
-                  <Button variant="danger" onClick={() => handleBookDelete(bookDltId)}>
+                  </button>
+                  <button className="issue-book-modal-button px-3 py-2" onClick={() => handleBookDelete(bookDltId)}>
                       Delete
-                  </Button>
+                  </button>
               </Modal.Footer>
           </Modal>
 

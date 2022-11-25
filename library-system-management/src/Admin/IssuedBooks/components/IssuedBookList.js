@@ -4,7 +4,7 @@ import shortid from "shortid";
 import { bookContext } from "../../../App";
 import { studentContext } from "../../../App";
 
-function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, setBookTitle}) {
+function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, setBookTitle,setFine}) {
     const [bookDatas, setBookDatas] = useContext(bookContext);
     const [studentDatas, setStudentDatas] = useContext(studentContext);
 
@@ -27,7 +27,7 @@ function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, s
         var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
         if (date1 > date2) {
             var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
-            setDayDiff(diffDays);
+            setDayDiff(diffDays*10);
         }
     }, [book]);
 
@@ -54,7 +54,7 @@ function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, s
             })}
             <p className="col-2 m-0">{issueddatedisplay}</p>
             <p className="col-2 m-0">{dueddatedisplay}</p>
-            <p className="col-2 m-0 ps-4">{dayDiff * 10}</p>
+            <p className="col-2 m-0 ps-4">{dayDiff}</p>
             <button
                 data-tip
                 data-for="mark-return"
@@ -64,7 +64,7 @@ function IssuedBookList({ book, returnId, handleShowReturnBookModal,bookTitle, s
                     handleShowReturnBookModal();
                     returnId(book.id);
                     setBookTitle(book.issueBookName);
-                    
+                    setFine(dayDiff)
                 }}
             >
                 <img src="./images/returnIcon.png" alt="" />

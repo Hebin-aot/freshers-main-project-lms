@@ -102,7 +102,7 @@ function StudentProfile() {
                               <p className="col-2 m-0">{obj.issueDate}</p>
                               <p className="col-2 m-0">{obj.issueDueDate}</p>
                               <p className="col-2 m-0">{obj.issueReturnDate}</p>
-                              <p className="col-2 m-0 ps-5">10</p>
+                              <p className="col-2 m-0 ps-5">{obj.fine}</p>
                           </div>
                       );
                   })}

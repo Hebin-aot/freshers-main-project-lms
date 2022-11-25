@@ -47,3 +47,23 @@
     font-size: 16px;
     color: #09174A;
 }
+
+.issue-book-modal-button{
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #ED7966;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.issue-book-modal-cancel{
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #7E7E7F;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #CECECE;
+}

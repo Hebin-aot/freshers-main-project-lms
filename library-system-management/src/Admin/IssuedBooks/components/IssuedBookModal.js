@@ -30,6 +30,7 @@ function IssuedBookModal({
         issueDate:issueDate,
         issueDueDate:issueDueDate,
         issueReturnDate:'-',
+        fine:0,
         returnState:false
     }
 
@@ -37,7 +38,7 @@ function IssuedBookModal({
            //fineFunction()
         setIssuedBookDatas([...issuedBookDatas, issuedBook])
             handleCloseIssuedBookModal()
-            console.log(issuedBookDatas)
+            console.log(issuedBook)
             
         // var dateDiff = new Date().getTime() - new Date(issueDueDate).getTime();
         // var numOfDays = Math.floor(dateDiff/(1000*60*60*24));
@@ -61,12 +62,12 @@ function IssuedBookModal({
     return (
         <Modal show={showIssuedBookModal} onHide={handleCloseIssuedBookModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Issue Book</Modal.Title>
+                <Modal.Title className="student-title border-0">Issue Book</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Book</Form.Label>
+                        <Form.Label className="modal-sub-heads">Book</Form.Label>
                         <Form.Select aria-label="Default select example" 
                         onChange={e=>setIssueBookName(e.target.value)}
                         value={issueBookName}>
@@ -81,7 +82,7 @@ function IssuedBookModal({
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Student</Form.Label>
+                        <Form.Label className="modal-sub-heads">Student</Form.Label>
                         <Form.Select aria-label="Default select example"
                         onChange={e=>setissueStudentName(e.target.value)}
                         value={issueStudentName}>
@@ -97,14 +98,14 @@ function IssuedBookModal({
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Issue Date</Form.Label>
+                        <Form.Label className="modal-sub-heads">Issue Date</Form.Label>
                         <Form.Control type="date" placeholder="name@example.com"
                         onChange={e=>setIssueDate(e.target.value)}
                         value={issueDate}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Due Date</Form.Label>
+                        <Form.Label className="modal-sub-heads">Due Date</Form.Label>
                         <Form.Control type="date" placeholder=""
                         onChange={e=>setIssueDueDate(e.target.value)}
                         value={issueDueDate}
@@ -113,12 +114,12 @@ function IssuedBookModal({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="danger" onClick={handleCloseIssuedBookModal}>
+                <button className="issue-book-modal-cancel px-3 py-2" onClick={handleCloseIssuedBookModal}>
                     Cancel
-                </Button>
-                <Button variant="danger" onClick={handleIssuedBookSubmit}>
+                </button>
+                <button className="issue-book-modal-button px-3 py-2" onClick={handleIssuedBookSubmit}>
                     Issue Book
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
