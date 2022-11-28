@@ -6,7 +6,6 @@ import AddStudentModal from "./components/AddStudentModal";
 import { useState } from "react";
 import { studentContext } from "../../App";
 import { useContext } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/esm/Form";
 import { Link } from "react-router-dom";

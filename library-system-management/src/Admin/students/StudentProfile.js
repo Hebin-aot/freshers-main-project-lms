@@ -12,10 +12,21 @@ function StudentProfile() {
 
     let {id} = useParams()
 
-
     const [issuedBookDatas, setIssuedBookDatas] = useContext(issuedBookContext);
     const [studentDatas, setStudentDatas] = useContext(studentContext);
     const [bookDatas, setBookDatas] = useContext(bookContext);
+
+    const issueCount = issuedBookDatas.filter((obj)=>{
+        if(obj.issueStudentName === id)
+        return(obj)
+    })
+
+    const returnCount = issuedBookDatas.filter((obj)=>{
+        if(obj.issueStudentName === id && obj.returnState === true)
+        return(obj)
+    })
+
+    const totalFine = issueCount.reduce((a,b)=> a= a+b.fine,0)
 
   return (
       <div className="d-flex">
@@ -56,14 +67,14 @@ function StudentProfile() {
                           <p className="m-0">Total Fine</p>
                       </div>
                       <div className="d-flex flex-column gap-4 fine-books">
-                          <p className="m-0">4</p>
-                          <p className="m-0">5</p>
-                          <p className="m-0">Rs.70</p>
+                          <p className="m-0">{issueCount.length}</p>
+                          <p className="m-0">{returnCount.length}</p>
+                          <p className="m-0">Rs.{totalFine}</p>
                       </div>
                   </Card.Body>
               </Card>
               <div className=" p-5 col-6">
-                  <Form.Label className="pb-3 issuedbooks">Issued Books (5)</Form.Label>
+                  <Form.Label className="pb-3 issuedbooks">Issued Books <span>({issueCount.length})</span> </Form.Label>
                   <Form.Control type="text" placeholder="Search by student name or email" />
               </div>
               <div className="col-md-12 student-data-container px-5 ">
@@ -79,9 +90,7 @@ function StudentProfile() {
                           (Rs. 10 per day)
                       </p>
                   </div>
-
                   {issuedBookDatas.map((obj) => {
-                    console.log(obj)
                     if(obj.issueStudentName === id)
                       return (
                           <div key={obj.id} className="d-flex py-4 student-profile-table-contents">

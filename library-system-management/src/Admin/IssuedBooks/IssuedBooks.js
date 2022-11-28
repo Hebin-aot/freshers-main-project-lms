@@ -1,6 +1,5 @@
 import React from "react";
 import AdminNavbar from "../AdminNavbar";
-
 import "./IssuedBook.css";
 import IssuedBookModal from "./components/IssuedBookModal";
 import { useState } from "react";
@@ -9,7 +8,6 @@ import { useContext } from "react";
 import { bookContext } from "../../App";
 import Form from "react-bootstrap/esm/Form";
 import { issuedBookContext } from "../../App";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import IssuedBookList from "./components/IssuedBookList";
 
