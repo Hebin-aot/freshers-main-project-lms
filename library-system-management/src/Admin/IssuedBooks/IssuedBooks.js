@@ -18,13 +18,13 @@ function IssuedBooks() {
     const [returnBookId, setReturnBookId] = useState("");
 
     const handleCloseReturnBookModal = () => setShowReturnBookModal(false);
-    const handleShowReturnBookModal = () => setShowReturnBookModal(true);
+    const handleShowReturnBookModal = () => setShowReturnBookModal(true); 
 
     const [fine, setFine] = useState()
 
     const [bookTitle, setBookTitle] = useState("");
 
-    const [returnDate, setReturnDate] = useState()
+    //const [returnDate, setReturnDate] = useState()
 
     const [showReturnBookModal, setShowReturnBookModal] = useState(false);
 

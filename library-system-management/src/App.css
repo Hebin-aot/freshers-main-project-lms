@@ -16,12 +16,37 @@
     color: #646464;
 }
 
-.admin-student-selection{
+.student-selection{
+    font-weight: 500;
+    font-size: 16px;
+    color: #6c728a;
+    border-style: none;
+    background-color: #fff;
+}
+.admin-selection{
+    font-weight: 500;
+    font-size: 16px;
+    color: #6c728a;
+    border-style: none;
+    background-color: #fff;
+}
+
+.admin-active{
     font-weight: 500;
     font-size: 16px;
     color: #09174A;
     border-style: none;
     background-color: #fff;
+    border-bottom:3px solid #ED7966;
+}
+
+.student-active{
+    font-weight: 500;
+    font-size: 16px;
+    color: #09174A;
+    border-style: none;
+    background-color: #fff;
+    border-bottom:3px solid #ED7966;
 }
 
 .mail-password-title{

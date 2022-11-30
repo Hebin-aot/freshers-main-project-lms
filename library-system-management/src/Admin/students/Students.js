@@ -145,7 +145,7 @@ function Students() {
                                         </button>
                                         <Link to={`/student-profile/${item.id}`}>
                                             <button className="action-buttons" >
-                                                <img src="./images/eyeIcon.png" alt="" />
+                                                <img src="./images/eyeIcon.png" alt=""/>
                                             </button>
                                         </Link>
                                     </div>

@@ -1,134 +1,138 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { createContext, useState ,useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createContext, useState, useEffect } from "react";
 import LoginForm from "./components/LoginForm";
-import './App.css';
-import Students from './Admin/students/Students';
+import "./App.css";
+import Students from "./Admin/students/Students";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AllBooks from './Admin/AllBooks/AllBooks';
-import IssuedBooks from './Admin/IssuedBooks/IssuedBooks';
-import StudentProfile from './Admin/students/StudentProfile';
+import AllBooks from "./Admin/AllBooks/AllBooks";
+import IssuedBooks from "./Admin/IssuedBooks/IssuedBooks";
+import StudentProfile from "./Admin/students/StudentProfile";
+import StudentNavbar from "./Student/StudentNavbar";
 
 //to get the data from local storage
 const getLocalStudents = () => {
-  let student = localStorage.getItem('students');
+    let student = localStorage.getItem("students");
 
-  if(student){
-    return JSON.parse(localStorage.getItem('students'));
-  }else{
-    return [];
-  }
-
-}
+    if (student) {
+        return JSON.parse(localStorage.getItem("students"));
+    } else {
+        return [];
+    }
+};
 
 //book LocalStorage
 const getLocalBooks = () => {
-  let book = localStorage.getItem('books');
+    let book = localStorage.getItem("books");
 
-  if(book){
-    return JSON.parse(localStorage.getItem('books'));
-  }else{
-    return [];
-  }
-
-}
+    if (book) {
+        return JSON.parse(localStorage.getItem("books"));
+    } else {
+        return [];
+    }
+};
 
 //issuedbook local storage
 const getLocalIssuedBooks = () => {
-  let issuedBook = localStorage.getItem('issuedBooks');
+    let issuedBook = localStorage.getItem("issuedBooks");
 
-  if(issuedBook){
-    return JSON.parse(localStorage.getItem('issuedBooks'));
-  }else{
-    return [];
-  }
-}
+    if (issuedBook) {
+        return JSON.parse(localStorage.getItem("issuedBooks"));
+    } else {
+        return [];
+    }
+};
 
-
-const studentContext = createContext()
-const bookContext = createContext()
-const issuedBookContext = createContext()
+const studentContext = createContext();
+const bookContext = createContext();
+const issuedBookContext = createContext();
 
 function App() {
-  
-  const [studentDatas, setStudentDatas] = useState(getLocalStudents())
 
-  const [bookDatas, setBookDatas] = useState(getLocalBooks())
+    const [studentDatas, setStudentDatas] = useState(getLocalStudents());
 
-  const [issuedBookDatas, setIssuedBookDatas] = useState(getLocalIssuedBooks())
+    const [bookDatas, setBookDatas] = useState(getLocalBooks());
 
+    const [issuedBookDatas, setIssuedBookDatas] = useState(getLocalIssuedBooks());
 
+        //useState for setting user
+        const [user, setUser] = useState({ email: "", password: "" });
 
-  //add to local storage
-  useEffect(() => {
-    localStorage.setItem('students', JSON.stringify(studentDatas))
-  }, [studentDatas]);
-  
-  useEffect(() =>{
-    localStorage.setItem('books', JSON.stringify(bookDatas))
-  },[bookDatas])
+        const [studentUser, setStudentUser] = useState({email:"", password:""});
 
-  useEffect(()=>{
-    localStorage.setItem('issuedBooks' ,JSON.stringify(issuedBookDatas))
-  },[issuedBookDatas])
+        const [loginState, setLoginState] = useState(false);
 
-  
-  //temporary admin details
-  const adminUser = {
-    email:"admin@gmail.com",
-    password:"admin123"
-  }
+    //add to local storage
+    useEffect(() => {
+        localStorage.setItem("students", JSON.stringify(studentDatas));
+    }, [studentDatas]);
 
-  //useState for setting user
-  const [user, setUser] = useState({email:"",password:""});
+    useEffect(() => {
+        localStorage.setItem("books", JSON.stringify(bookDatas));
+    }, [bookDatas]);
+
+    useEffect(() => {
+        localStorage.setItem("issuedBooks", JSON.stringify(issuedBookDatas));
+    }, [issuedBookDatas]);
 
 
+    //temporary admin details
+    const adminUser = {
+        email: "admin@gmail.com",
+        password: "admin123",
+    };
+
+    const StudentUSER={
+      email:"a@gmail.com",
+      password:"123",
+    };
 
 
-  const Login = (details) => {
-    console.log(details)
-    if (details.email === adminUser.email && details.password === adminUser.password){
-      setUser({
-        email:details.email,
-      })
-    }else{
+    const Login = (details) => {
+        if (details.email === adminUser.email && details.password === adminUser.password) {
+            setUser({
+                email: details.email,
+            });
+        } else {
+        }
+    };
 
-    }
-  }
+    const StudentLogin = (data) => {
+      if(data.email === StudentUSER.email && data.password === StudentUSER.password){
+        setStudentUser({
+          email: data.email,
+        });
+      } else {
 
+      }
+      console.log(studentUser)
+    };
 
-  return (
-    <div className="App">
-      <studentContext.Provider value={[studentDatas, setStudentDatas]}>
-        <bookContext.Provider value={[bookDatas, setBookDatas]}>
-          <issuedBookContext.Provider value={[issuedBookDatas, setIssuedBookDatas]}>
-              <Router>
-                <Routes>
-                  <Route exact path='/' element=
-                    {
-
-                      (user.email !== "") ? (
-
-                        <Students/>
-
-                        ) : ( 
-                          <LoginForm Login={Login}/>
-                      )
-
-                    }/>
-                  <Route path='/students' element={<Students/>}/>
-                  <Route path='/all-books' element={<AllBooks/>}/>
-                  <Route path='/issued-books' element={<IssuedBooks/>}/>
-                  <Route path='/student-profile/:id' element={<StudentProfile/>}/>
-                </Routes>
-              </Router>
-          </issuedBookContext.Provider>
-        </bookContext.Provider>
-      </studentContext.Provider>
-    </div>
-  );
+    return (
+        <div className="App">
+            <studentContext.Provider value={[studentDatas, setStudentDatas]}>
+                <bookContext.Provider value={[bookDatas, setBookDatas]}>
+                    <issuedBookContext.Provider value={[issuedBookDatas, setIssuedBookDatas]}>
+                        <Router>
+                            <Routes>
+                                <Route
+                                    exact
+                                    path="/"
+                                    element={loginState?(studentUser.email !== "" ? <StudentNavbar/> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>):(user.email !== "" ? <Students /> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>)}
+                                />
+                                <Route path="/students" element={<Students />} />
+                                <Route path="/all-books" element={<AllBooks />} />
+                                <Route path="/issued-books" element={<IssuedBooks />} />
+                                <Route path="/student-profile/:id" element={<StudentProfile />} />
+                            </Routes>
+                        </Router>
+                    </issuedBookContext.Provider>
+                </bookContext.Provider>
+            </studentContext.Provider>
+        </div>
+    );
 }
 
 export default App;
-export {studentContext}
-export {bookContext}
-export {issuedBookContext}
+export { studentContext };
+export { bookContext };
+export { issuedBookContext };
