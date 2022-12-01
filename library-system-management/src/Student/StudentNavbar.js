@@ -9,20 +9,28 @@ function StudentNavbar() {
                 <p className="lmsWhiteText m-0">LMS</p>
             </div>
             <div className="admin-navigation-tab-container d-flex flex-column align-items-center gap-4">
-                <button className="col-md-10 d-flex gap-3">
-                    {" "}
-                    <img src="/images/issuedBook.png" alt="" /> Issued Books
-                </button>
 
-                <button className="col-md-10 d-flex gap-3">
-                    {" "}
-                    <img src="/images/allBooks.png" alt="" /> All Books
-                </button>
+                <div className="col-md-10">
+                    <button className="col-md-10 d-flex gap-3">
+                        {" "}
+                        <img src="/images/issuedBook.png" alt="" /> Issued Books
+                    </button>
+                </div>
 
-                <button className="d-flex gap-3 col-md-10">
-                    {" "}
-                    <img src="/images/studentsLogo.png" alt="" /> Students
-                </button>
+                <div className="col-md-10">
+                    <button className="col-md-10 d-flex gap-3">
+                        {" "}
+                        <img src="/images/allBooks.png" alt="" /> All Books
+                    </button>
+                </div>
+
+                <div className="col-md-10">
+                    <button className="d-flex gap-3 col-md-10">
+                        {" "}
+                        <img src="/images/studentsLogo.png" alt="" /> Students
+                    </button>
+                </div>
+                
             </div>
         </div>
     );

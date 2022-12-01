@@ -8,7 +8,7 @@ import AllBooks from "./Admin/AllBooks/AllBooks";
 import IssuedBooks from "./Admin/IssuedBooks/IssuedBooks";
 import StudentProfile from "./Admin/students/StudentProfile";
 import StudentNavbar from "./Student/StudentNavbar";
-
+import StudentAllBooks from "./Student/Student_All_books/StudentAllBooks";
 //to get the data from local storage
 const getLocalStudents = () => {
     let student = localStorage.getItem("students");
@@ -81,13 +81,15 @@ function App() {
         password: "admin123",
     };
 
-    const StudentUSER={
-      email:"a@gmail.com",
-      password:"123",
-    };
+    // let StudentUSER={
+    //   email:"a@gmail.com",
+    //   password:"123",
+    // };
+
 
 
     const Login = (details) => {
+
         if (details.email === adminUser.email && details.password === adminUser.password) {
             setUser({
                 email: details.email,
@@ -97,7 +99,16 @@ function App() {
     };
 
     const StudentLogin = (data) => {
-      if(data.email === StudentUSER.email && data.password === StudentUSER.password){
+
+        let studentEmail;
+        let studentPassword;
+
+        studentDatas.find((x)=>{
+            if( data.email === x.email && data.password === x.password)
+            return (studentEmail = x.email,studentPassword = x.password)
+        })
+
+      if(data.email === studentEmail && data.password === studentPassword){
         setStudentUser({
           email: data.email,
         });
@@ -117,7 +128,7 @@ function App() {
                                 <Route
                                     exact
                                     path="/"
-                                    element={loginState?(studentUser.email !== "" ? <StudentNavbar/> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>):(user.email !== "" ? <Students /> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>)}
+                                    element={loginState?(studentUser.email !== "" ? <StudentAllBooks/> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>):(user.email !== "" ? <Students /> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>)}
                                 />
                                 <Route path="/students" element={<Students />} />
                                 <Route path="/all-books" element={<AllBooks />} />
