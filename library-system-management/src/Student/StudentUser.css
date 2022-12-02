@@ -1,0 +1,25 @@
+.student-navigation-bar{
+        background-color: #303179;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+}
+
+.student-navigation-tab-container button{
+    border-style: none;
+    background-color: #303179;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 15px;
+    text-align: left;
+    width: 100%;
+
+}
+
+.student-navigation-tab-container button:hover{
+    background-color: #41438b;
+}
+

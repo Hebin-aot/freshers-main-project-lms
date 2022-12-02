@@ -3,8 +3,9 @@ import StudentNavbar from '../StudentNavbar'
 
 function StudentAllBooks() {
   return (
-    <div>
+    <div className='d-flex'>
         <StudentNavbar/>
+        <div>hiiii</div>
     </div>
   )
 }
