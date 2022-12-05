@@ -57,9 +57,11 @@ function App() {
         //useState for setting user
         const [user, setUser] = useState({ email: "", password: "" });
 
-        const [studentUser, setStudentUser] = useState({email:"", password:""});
+        const [studentUser, setStudentUser] = useState({id:"",email:"", password:""});
 
         const [loginState, setLoginState] = useState(false);
+
+        const [studentID, setStudentID] = useState("")
 
     //add to local storage
     useEffect(() => {
@@ -102,20 +104,22 @@ function App() {
 
         let studentEmail;
         let studentPassword;
+        //let studentId;
 
         studentDatas.find((x)=>{
             if( data.email === x.email && data.password === x.password)
-            return (studentEmail = x.email,studentPassword = x.password)
+            return (studentEmail = x.email,studentPassword = x.password,setStudentID(x.id))
         })
 
       if(data.email === studentEmail && data.password === studentPassword){
         setStudentUser({
           email: data.email,
+          id: data.id,
         });
       } else {
 
       }
-      console.log(studentUser)
+      console.log(studentID)
     };
 
     return (
@@ -128,12 +132,14 @@ function App() {
                                 <Route
                                     exact
                                     path="/"
-                                    element={loginState?(studentUser.email !== "" ? <StudentAllBooks/> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>):(user.email !== "" ? <Students /> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>)}
+                                    element={loginState?(studentUser.email !== "" ? <StudentAllBooks studentID={studentID}/> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>):(user.email !== "" ? <Students /> : <LoginForm Login={Login} StudentLogin={StudentLogin} loginState={loginState} setLoginState={setLoginState}/>)}
                                 />
                                 <Route path="/students" element={<Students />} />
                                 <Route path="/all-books" element={<AllBooks />} />
                                 <Route path="/issued-books" element={<IssuedBooks />} />
                                 <Route path="/student-profile/:id" element={<StudentProfile />} />
+                                <Route path="/student-my-books" element={<StudentAllBooks studentID={studentID}/>}/>
+                                <Route path="/student-all-books" element={<StudentAllBooks studentID={studentID}/>}/>
                             </Routes>
                         </Router>
                     </issuedBookContext.Provider>

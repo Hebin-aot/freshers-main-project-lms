@@ -55,8 +55,6 @@ function Students() {
         setSelectedStudent(null);
     };
 
-    
-
     return (
         <div className="d-flex">
             <AdminNavbar/>
